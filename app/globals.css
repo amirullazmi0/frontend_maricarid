@@ -1,18 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 :root {
   --foreground-rgb: #000000;
   --background-start-rgb: #efefef;
   --background-end-rgb: #ffffff;
+  --white: #ffffff;
+  --dark: #0c1116;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
 
 @layer utilities {
@@ -20,9 +19,26 @@ body {
     text-wrap: balance;
   }
 }
-
 .tron {
   background: url(../public/tron.png);
   background-position: center;
   background-size: cover;
+  min-height: 85vh;
+  max-height: 100vh;
 }
+
+.nav-right {
+  border-top: 15vh solid var(--dark);
+  border-left: 0px solid transparent;
+  border-right: 70px solid transparent;
+}
+
+.nav-left {
+  background-color: var(--white);
+}
+
+.text-dark {
+  color: var(--dark);
+}
+
+/*# sourceMappingURL=globals.css.map */
