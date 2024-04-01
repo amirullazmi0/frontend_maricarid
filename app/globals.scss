@@ -8,6 +8,9 @@
     --background-end-rgb: #ffffff;
     --white: #ffffff;
     --dark: #0c1116;
+    --dark-transparant: #0f1b28e2;
+    --gray: rgb(248 250 252);
+    --gray-shadow: rgb(203, 203, 203);
 }
 
 body {
@@ -38,6 +41,72 @@ body {
     border-right: 70px solid transparent;
 }
 
+.border-t-service {
+    // border-image: url(../public/container.jpg);
+    // border-top: 80vh solid transparent;
+    border-left: solid var(--white);
+    border-right: 0px transparent;
+    border-bottom: 0px solid transparent;
+}
+
+.card-service {
+    // aspect-ratio: 1/1;
+    box-shadow: 0px 10px 25px -5px var(--gray);
+    border-radius: 10px;
+    position: relative;
+    text-align: center;
+    /* Adjust line height to center content vertically */
+    overflow: hidden;
+    // transition: background-color 0.5s, transform 0.5s;
+
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        top: -100%;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background-color: var(--gray);
+        transition: transform 0.7s;
+        border-bottom-right-radius: 200px;
+
+    }
+
+    .cs-item {
+        bottom: -100%;
+        left: 0%;
+        width: 100%;
+        height: 100%;
+        background-color: var(--gray);
+        transition: transform 0.7s;
+        // border-bottom-right-radius: 200px;
+
+    }
+
+    &:hover {
+        box-shadow: 0px 8px 20px -10px var(--gray-shadow);
+
+        .cs-item {
+            transform: translateX(0%) translateY(-100%) scale(100%);
+        }
+
+        &::before {
+
+            // transform: translateX(100%) translateY(100%) scale(200%);
+            // border-bottom-right-radius: 0px;
+        }
+    }
+
+    &:hover {
+        // background-color: var(--gray);
+        // color: white;
+    }
+}
+
+
+
 
 .nav-left {
     background-color: var(--white);
@@ -45,4 +114,12 @@ body {
 
 .text-dark {
     color: var(--dark);
+}
+
+.bg-dark {
+    background: var(--dark);
+}
+
+.bg-dark-transparant {
+    background: var(--dark-transparant);
 }

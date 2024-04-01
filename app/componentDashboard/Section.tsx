@@ -8,7 +8,7 @@ import Activities from './Activities'
 
 const Section = () => {
     return (
-        <div className='grid gap-4 justify-center items-center relative min-h-[40vh] w-full'>
+        <div className=''>
             <Features />
             <OurServices />
             <AboutUs />
