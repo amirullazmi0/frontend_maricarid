@@ -9,6 +9,7 @@
     --white: #ffffff;
     --dark: #0c1116;
     --dark-transparant: #0f1b28e2;
+    --orange: #e47914;
     --gray: rgb(248 250 252);
     --gray-shadow: rgb(203, 203, 203);
 }
@@ -118,6 +119,14 @@ body {
 
 .bg-dark {
     background: var(--dark);
+}
+
+.bg-orange {
+    background: var(--orange);
+}
+
+.bg-gray {
+    background: var(--gray);
 }
 
 .bg-dark-transparant {
