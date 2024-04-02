@@ -71,10 +71,8 @@ body {
   background-color: var(--gray);
   transition: transform 0.7s;
 }
-.card-service:hover {
-  box-shadow: 0px 8px 20px -10px var(--gray-shadow);
-}
 .card-service:hover .cs-item {
+  box-shadow: 0px 8px 20px -10px var(--gray-shadow);
   transform: translateX(0%) translateY(-100%) scale(100%);
 }
 .nav-left {
@@ -99,6 +97,10 @@ body {
 
 .bg-dark-transparant {
   background: var(--dark-transparant);
+}
+
+.shadows-gray {
+  box-shadow: 0px 10px 25px -5px var(--gray);
 }
 
 /*# sourceMappingURL=globals.css.map */

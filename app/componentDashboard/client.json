@@ -1,22 +1,22 @@
 [
     {
         "name": "PT Berlian Samudra Pacific",
-        "url": "../../public/client/berlian-samudra-pacific.png"
+        "url": "/client/berlian-samudra-pacific.png"
     },
     {
         "name": "PT Bosowa Berlian Motor",
-        "url": "../../public/client/bosowa.png"
+        "url": "/client/bosowa.png"
     },
     {
         "name": "PT Pelayanan Nelly Dwi Putri",
-        "url": "../../public/client/PNDP.png"
+        "url": "/client/PNDP.png"
     },
     {
         "name": "PT Indocement Tunggal Prakarsa Tbk",
-        "url": "../../public/client/tigaRoda.png"
+        "url": "/client/tigaRoda.png"
     },
     {
         "name": "PT Pelahyanan Tonasa LInes",
-        "url": "../../public/client/tonasa.png"
+        "url": "/client/tonasa.png"
     }
 ]

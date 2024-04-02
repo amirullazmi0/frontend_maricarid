@@ -2,7 +2,7 @@ import React from 'react'
 
 const ContactUs = () => {
     return (
-        <div className='min-w-screen pt-4 pb-4 bg-gray'>
+        <div className='min-w-screen pt-4 pb-4 bg-red-600'>
             <div className="flex justify-center items-center">
                 <div className="lg:md:w-[80vw] w-[90vw] uppercase font-bold">
                     <div className="lg:md:text-xl">

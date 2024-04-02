@@ -87,9 +87,9 @@ body {
     }
 
     &:hover {
-        box-shadow: 0px 8px 20px -10px var(--gray-shadow);
 
         .cs-item {
+            box-shadow: 0px 8px 20px -10px var(--gray-shadow);
             transform: translateX(0%) translateY(-100%) scale(100%);
         }
 
@@ -131,4 +131,8 @@ body {
 
 .bg-dark-transparant {
     background: var(--dark-transparant);
+}
+
+.shadows-gray {
+    box-shadow: 0px 10px 25px -5px var(--gray);
 }
