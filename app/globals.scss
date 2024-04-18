@@ -10,6 +10,8 @@
     --dark: #0c1116;
     --dark-transparant: #0f1b28e2;
     --orange: #e47914;
+    --red: #d72020;
+    --red-transparant: #000000bd;
     --gray: rgb(248 250 252);
     --gray-shadow: rgb(203, 203, 203);
 }
@@ -131,6 +133,22 @@ body {
 
 .bg-dark-transparant {
     background: var(--dark-transparant);
+}
+
+.bg-login {
+    background-image: url('/container.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+.bg-red {
+    background: var(--red);
+}
+
+.bg-admin {
+    background-image: url('/bg-admin.jpg');
+    background-size: 400px;
+    background-repeat: repeat;
 }
 
 .shadows-gray {

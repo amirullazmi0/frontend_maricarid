@@ -13,8 +13,8 @@ const Section = () => {
             <OurServices />
             <AboutUs />
             <OurClients />
-            <ContactUs />
             <Activities />
+            <ContactUs />
         </div>
     )
 }
