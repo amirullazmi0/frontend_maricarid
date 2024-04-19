@@ -18,7 +18,7 @@ const Section = () => {
                             </div>
                             <div className="">
                                 <div className="text-white mb-1">Event Description</div>
-                                <input type="file" className="file-input file-input-bordered w-full" />
+                                <input type="file" multiple aria-multiline className="file-input file-input-bordered w-full" />
                             </div>
                             <hr />
                             <button className="btn btn-neutral uppercase">Save</button>

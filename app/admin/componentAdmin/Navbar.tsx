@@ -12,6 +12,7 @@ const Navbar = ({ active }: { active: string }) => {
     }
 
     const handleLogout = () => {
+        sessionStorage.removeItem('access_token')
         navigation.push('/login')
     }
     return (

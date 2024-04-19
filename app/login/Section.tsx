@@ -1,59 +1,121 @@
 'use client'
 import axios from 'axios'
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-
-
+import logo from "../../public/assets/fullWhite.png";
 import React, { useEffect, useState } from 'react'
-
+import 'dotenv/config'
+import { cookies } from 'next/headers';
 const Section = () => {
+    const API_URL = process.env.API_URL
+
     const [Login, setLogin] = useState<boolean>(false)
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
     const [error, setError] = useState<boolean>(false)
-
+    const [loginStatus, setLoginStatus] = useState<boolean | string>('')
     const navigation = useRouter()
 
     const handleLogin = async () => {
-        navigation.push('/admin')
+        if (email && password) {
 
-        try {
-            const response = await axios.post('', {
-                email: email,
-                password: password
-            })
-        } catch (error) {
-            console.log(error);
+            try {
+                const response = await axios.post(`${API_URL}/api/auth/login`, {
+                    email: email,
+                    password: password
+                })
 
+                if (response.data.success === true) {
+                    sessionStorage.setItem('access_token', response.data.data.token)
+                    setLoginStatus(true)
+                    setTimeout(() => {
+                        navigation.push('/admin')
+                    }, 3000)
+                } else {
+                    setEmail('')
+                    setPassword('')
+                    setLoginStatus(false)
+                    setTimeout(() => {
+                        setLoginStatus('')
+                    }, 3000)
+                }
+
+            } catch (error) {
+                console.log(error);
+                setEmail('')
+                setPassword('')
+                setLoginStatus(false)
+                setTimeout(() => {
+                    setLoginStatus('')
+                }, 3000)
+            }
         }
     }
 
-    useEffect(() => {
-        console.log('email', email);
-        console.log('password', password);
+    const renderAlert = () => {
+        if (loginStatus === true) {
+            return (
+                <div className="p-3 bg-green-200 rounded text-green-700 flex justify-between">
+                    <div className="">
+                        Anda Berhasil Login
+                    </div>
+                    <span className="loading loading-dots loading-sm"></span>
+                </div>
+            )
+        } else if (loginStatus === false) {
+            return (
+                <div className="p-3 bg-red-200 rounded text-red-700 flex justify-between">
+                    <div className="">
+                        Periksa email dan password
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+                    </svg>
+                </div>
+            )
+        }
+    }
 
-    }, [email, password])
+    const [isChecked, setIsChecked] = useState<boolean>(false);
+
+    const handleCheckboxChange = (e: any) => {
+        setIsChecked(e.target.checked);
+    };
+
+    useEffect(() => {
+
+    }, [])
     return (
         <div className='bg-login '>
             <div className="bg-[#000000bb] w-screen min-h-screen flex justify-center items-center">
                 <div className=" rounded-xl lg:w-[60%] w-[90%] bg-white overflow-hidden">
                     <div className="lg:grid grid-cols-2">
-                        <div className="min-h-[65vh] flex items-center justify-center">
-                            <div className="w-[70%] grid gap-3">
-                                <div className="mb-4 mt-4">
+                        <div className="min-h-[75vh] flex items-center justify-center p-5">
+                            <div className="w-[80%] grid gap-3">
+                                <div className="mb-4">
+                                    <div className="flex justify-center">
+                                        <Image alt='' src={logo} className='h-40 object-cover drop-shadow-lg' />
+                                    </div>
                                     <div className="text-dark uppercase font-bold text-5xl">Login</div>
-                                    <div className="text-gray-400 uppercase text-xl">Maricar Id</div>
                                 </div>
+
+                                {renderAlert()}
                                 <div className="">
                                     <div className="mb-2">Email</div>
-                                    <input onChange={(e) => setEmail(e.target.value)} type="text" placeholder="email" className="input input-bordered w-full" />
+                                    <input value={email} onChange={(e) => setEmail(e.target.value)} type="text" placeholder="email" className="input input-bordered w-full" />
                                 </div>
                                 <div className="">
                                     <div className="mb-2">Password</div>
-                                    <input onChange={(e) => setPassword(e.target.value)} type="text" placeholder="password" className="input input-bordered w-full" />
+                                    <input value={password} onChange={(e) => setPassword(e.target.value)} type={isChecked ? 'text' : 'password'} placeholder="password" className="input input-bordered w-full" />
                                 </div>
+                                <div className=" flex justify-end gap-3 ">
+                                    <div >Lihat Password</div>
+                                    <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} className="checkbox" />
+                                </div>
+
                                 <hr />
-                                <div className="flex justify-center">
-                                    <button onClick={() => handleLogin()} className='btn btn-neutral btn-wide btn-sm'> Login</button>
+                                <div className="flex justify-center mt-5">
+                                    <button onClick={() => handleLogin()} type='submit' className='btn btn-neutral btn-wide'> Login</button>
                                 </div>
                             </div>
                         </div>
