@@ -17,21 +17,20 @@ const Section = () => {
     const navigation = useRouter()
 
     const handleLogin = async () => {
-        if (email && password) {
-
+        if (email.length > 0 && password.length > 0) {
             try {
                 const response = await axios.post(`${API_URL}/api/auth/login`, {
                     email: email,
                     password: password
                 })
 
-                if (response.data.success === true) {
+                if (response.data.success == true) {
                     sessionStorage.setItem('access_token', response.data.data.token)
                     setLoginStatus(true)
                     setTimeout(() => {
                         navigation.push('/admin')
                     }, 3000)
-                } else {
+                } else if (response.data.success == false) {
                     setEmail('')
                     setPassword('')
                     setLoginStatus(false)
@@ -39,9 +38,7 @@ const Section = () => {
                         setLoginStatus('')
                     }, 3000)
                 }
-
             } catch (error) {
-                console.log(error);
                 setEmail('')
                 setPassword('')
                 setLoginStatus(false)
@@ -82,9 +79,6 @@ const Section = () => {
         setIsChecked(e.target.checked);
     };
 
-    useEffect(() => {
-
-    }, [])
     return (
         <div className='bg-login '>
             <div className="bg-[#000000bb] w-screen min-h-screen flex justify-center items-center">
