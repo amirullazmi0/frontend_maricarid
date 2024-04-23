@@ -56,21 +56,3 @@ export default function EventProvider({ children }: { children: React.ReactNode 
 
         }}>{children}</EventContext.Provider>
 }
-
-export class EventContextDTO {
-    addStatus?: boolean | undefined
-    setAddStatus?: Function| boolean | undefined
-    errorStatus?: boolean | undefined
-    setErrorStatus?: boolean | undefined
-    deleteSelect?: eventDTO | undefined
-    setDeleteSelect?: eventDTO | undefined
-    deleteStatus?: boolean | undefined
-    setDeleteStatus?: boolean | undefined
-    handleDeleteEvent?: any | undefined
-    modalEdit?: boolean | undefined
-    setModalEdit?: boolean | undefined
-    editSelect?: eventDTO | undefined
-    setEditSelect?: eventDTO | undefined
-    editStatus?: boolean | undefined
-    setEditStatus?: boolean | undefined
-}

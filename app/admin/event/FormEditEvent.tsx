@@ -2,7 +2,7 @@
 import { eventDTO } from '@/model/event.model'
 import axios from 'axios'
 import React, { useState, useContext, useEffect } from 'react'
-import EventProvider, { EventContext, EventContextDTO } from './EventContext'
+import EventProvider, { EventContext} from './EventContext'
 
 interface props {
     modal: boolean
@@ -63,7 +63,6 @@ const FormEditEvent: React.FC<props> = ({ modal }) => {
                     setTimeout(() => {
                         EventState.setEditStatus(false)
                     }, 10000)
-
                 }
 
             } catch (error) {

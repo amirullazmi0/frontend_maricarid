@@ -3,16 +3,15 @@ import axios from 'axios'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import logo from "../../public/assets/fullWhite.png";
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import 'dotenv/config'
 import { cookies } from 'next/headers';
+import { AuthContext } from '../admin/AuthContext';
 const Section = () => {
     const API_URL = process.env.API_URL
-
-    const [Login, setLogin] = useState<boolean>(false)
+    
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
-    const [error, setError] = useState<boolean>(false)
     const [loginStatus, setLoginStatus] = useState<boolean | string>('')
     const navigation = useRouter()
 

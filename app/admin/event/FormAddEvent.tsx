@@ -9,26 +9,36 @@ const FormAddEvent = () => {
 
     const [Modal, setModal] = useState<boolean>(false)
 
-    const [name, setName] = useState<string | undefined>(undefined)
-    const [desc, setDesc] = useState<string | undefined>(undefined)
-    const [images, setImages] = useState<any | null>(null)
+    const [name, setName] = useState<string | undefined>('')
+    const [desc, setDesc] = useState<string | undefined>('')
+    const [images, setImages] = useState<any | undefined>('')
     const [require, setRequire] = useState<boolean>(false)
 
     const handleCloseModal = () => {
-        setName(undefined)
-        setDesc(undefined)
-        setImages(null)
+        setName('')
+        setDesc('')
+        setImages('')
         setModal(false)
     }
     useEffect(() => {
-        console.log(EventState.addStatus);
-    }, [EventState.addStatus])
+        console.log(images);
+
+    }, [images])
+
+    const handleFileChange = (event: any) => {
+        // console.log(event.target.files.length);
+
+        setImages(event.target.files[0]);
+    };
 
     const handleAddEvent = async () => {
         if (name && desc) {
             try {
                 const API_URL = process.env.API_URL
-
+                const formData = new FormData
+                formData.append('name', name)
+                formData.append('desc', desc)
+                formData.append('images', images)
                 const data: eventDTO = {
                     name: name,
                     desc: desc,
@@ -36,30 +46,29 @@ const FormAddEvent = () => {
                 }
 
                 const access_token = sessionStorage.getItem('access_token')
-                console.log(access_token);
 
-                const response = await axios.post(`${API_URL}/api/event`, data, {
+                const response = await axios.post(`${API_URL}/api/event`, formData, {
                     headers: {
-                        Authorization: `Bearer ${access_token}`
+                        Authorization: `Bearer ${access_token}`,
                     }
                 })
-
-                console.log(response.data.success);
-
 
                 if (response.data.success == true) {
                     window.scrollTo({
                         top: 0
                     })
                     EventState.setAddStatus(true)
-                    setName(undefined)
-                    setDesc(undefined)
-                    setImages(undefined)
+                    setName('')
+                    setDesc('')
+                    setImages('')
                     setModal(false)
                     setTimeout(() => {
                         EventState.setAddStatus(false)
                     }, 10000)
                 }
+
+                console.log(response.data);
+
 
             } catch (error) {
                 window.scrollTo({
@@ -114,7 +123,7 @@ const FormAddEvent = () => {
                             </div>
                             <div className="">
                                 <div className="text-white mb-1">Event Description</div>
-                                <input onChange={(e) => setImages(e.target.files)} type="file" multiple aria-multiline className="file-input file-input-bordered w-full" />
+                                <input accept="image/*" multiple onChange={handleFileChange} type="file" className="file-input file-input-bordered w-full" />
                             </div>
                             <hr />
                             <button onClick={handleAddEvent} className="btn btn-success uppercase">Save</button>
