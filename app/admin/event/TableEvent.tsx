@@ -94,7 +94,7 @@ const TableEvent = () => {
                             <div className="card card-compact w-full bg-base-100 shadow-xl rounded-lg">
 
                                 <button className='aspect-video overflow-hidden'>
-                                    <img className='object-cover w-full h-full hover:scale-110 duration-200 active:scale-100' src={item.images.length > 0 ? item.images[0] : '/default.jpg'} alt="Shoes" />
+                                    <img className='object-cover w-full h-full hover:scale-110 duration-200 active:scale-100' src={item.images ? item.images[0] : '/default.jpg'} alt="Shoes" />
                                 </button>
                                 <div className="card-body bg-dark">
                                     <h2 className="card-title">{item.name}</h2>

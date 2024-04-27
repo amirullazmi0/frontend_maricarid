@@ -26,8 +26,6 @@ const FormAddEvent = () => {
     }, [images])
 
     const handleFileChange = (event: any) => {
-        // console.log(event.target.files.length);
-
         setImages(event.target.files[0]);
     };
 
@@ -66,10 +64,6 @@ const FormAddEvent = () => {
                         EventState.setAddStatus(false)
                     }, 10000)
                 }
-
-                console.log(response.data);
-
-
             } catch (error) {
                 window.scrollTo({
                     top: 0
@@ -123,7 +117,7 @@ const FormAddEvent = () => {
                             </div>
                             <div className="">
                                 <div className="text-white mb-1">Event Description</div>
-                                <input accept="image/*" multiple onChange={handleFileChange} type="file" className="file-input file-input-bordered w-full" />
+                                <input accept="image/*" onChange={handleFileChange} type="file" className="file-input file-input-bordered w-full" />
                             </div>
                             <hr />
                             <button onClick={handleAddEvent} className="btn btn-success uppercase">Save</button>

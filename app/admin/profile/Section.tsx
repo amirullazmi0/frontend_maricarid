@@ -1,27 +1,17 @@
 import React from 'react'
+import FormPassword from './FormPassword'
+import { FormSocmed } from './FormSocmed'
 
 const Section = () => {
     return (
         <div className='bg-admin min-h-screen'>
             <div className="flex justify-center p-4">
-                <div className="lg:w-[70%] p-4 bg-[#00000078]">
-                    <div className="lg:grid grid-cols-3 gap-2">
-                        <button className='aspect-square bg-[#00000078] rounded-lg hover:bg-[#000000c5] active:scale-95 duration-200'>
-                            <div className="flex justify-center items-center text-gray-300 text-xl uppercase font-bold">
-                                Event
-                            </div>
-                        </button>
-                        <button className='aspect-square bg-[#00000078] rounded-lg hover:bg-[#000000c5] active:scale-95 duration-200'>
-                            <div className="flex justify-center items-center text-gray-300 text-xl uppercase font-bold">
-                                Social Media
-                            </div>
-                        </button>
-                        <button className='aspect-square bg-[#00000078] rounded-lg hover:bg-[#000000c5] active:scale-95 duration-200'>
-                            <div className="flex justify-center items-center text-gray-300 text-xl uppercase font-bold">
-                                Profile
-                            </div>
-                        </button>
+                <div className="lg:w-[70%] w-full p-4 bg-[#00000078]">
+                    <div className="uppercase text-2xl text-warning border-warning font-bold pb-1 pr-5 border-b-4 w-fit ">
+                        Profile
                     </div>
+                    <FormPassword />
+                    <FormSocmed />
                 </div>
             </div>
         </div>

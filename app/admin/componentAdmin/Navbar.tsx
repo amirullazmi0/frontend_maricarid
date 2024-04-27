@@ -23,7 +23,7 @@ const Navbar = ({ active }: { active: string }) => {
                 </div>
                 <button onClick={() => handleNavigation('')} className={`hover:scale-105 active:scale-95 duration-200 pl-3 pr-3 ${active === `dashboard` && `border-b-4 border-warning`}`}>Dashboard</button>
                 <button onClick={() => handleNavigation('event')} className={`hover:scale-105 active:scale-95 duration-200 pl-3 pr-3 ${active === `event` && `border-b-4 border-warning`}`}>Event</button>
-                <button onClick={() => handleNavigation('socmed')} className={`hover:scale-105 active:scale-95 duration-200 pl-3 pr-3 ${active === `socmed` && `border-b-4 border-warning`}`}>Socmed</button>
+                {/* <button onClick={() => handleNavigation('socmed')} className={`hover:scale-105 active:scale-95 duration-200 pl-3 pr-3 ${active === `socmed` && `border-b-4 border-warning`}`}>Socmed</button> */}
                 <button onClick={() => handleNavigation('profile')} className={`hover:scale-105 active:scale-95 duration-200 pl-3 pr-3 ${active === `profile` && `border-b-4 border-warning`}`}>Profile</button>
                 <button onClick={() => handleLogout()} className='btn btn-warning rounded-sm'>Logout</button>
             </div>
