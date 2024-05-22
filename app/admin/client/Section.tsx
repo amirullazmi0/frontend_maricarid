@@ -5,18 +5,22 @@ import Alert from './Alert'
 import FormEditClient from './FormEditClient'
 import FormAddClient from './FormAddClient'
 import TableClient from './TableClient'
+import Footer from '../componentAdmin/Footer'
+import { useRouter } from 'next/navigation'
 
 
 const Section = () => {
-    const eventState: any = useContext(ClientContext)
+    const navigation = useRouter()
+    const handleNavigation = (e: string) => {
+        navigation.push(`/admin/client/${e}`)
+    }
     return (
-        <div className='bg-admin min-h-screen'>
+        <div className='bg-admin min-h-[70vh]'>
             <div className="flex justify-center p-4">
-                <div className="lg:w-[70%] p-4 bg-[#00000078]">
+                <div className="lg:w-[70%] p-4 bg-black">
                     <Alert />
-                    <FormAddClient />
+                    <button onClick={() => handleNavigation('add')} className='btn btn-warning rounded-sm'>Add Client</button>
                     <TableClient />
-                    <FormEditClient modal={eventState.modalEdit} />
                 </div>
             </div>
         </div>

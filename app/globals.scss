@@ -184,7 +184,7 @@ body {
 }
 
 .bg-login {
-    background-image: url('/container.jpg');
+    background-image: url('/container2.jpg');
     background-position: center;
     background-size: cover;
 }
@@ -194,7 +194,8 @@ body {
 }
 
 .bg-admin {
-    background-image: url('/bg-admin.jpg');
+    // background-image: url('/bg-admin.jpg');
+    background-color: #ffffff;
     background-size: 400px;
     background-repeat: repeat;
 }

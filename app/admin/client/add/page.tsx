@@ -2,23 +2,23 @@
 import Image from "next/image";
 import React from "react";
 import Section from "./Section";
-import Navbar from "../componentAdmin/Navbar";
-import EventProvider from "./EventContext";
-import AuthProvider from "../AuthContext";
-import CheckAuthAdmin from "../componentAdmin/CheckAuthAdmin";
-import Footer from "../componentAdmin/Footer";
+import Navbar from "../../componentAdmin/Navbar";
+import ClientProvider from "../ClientContext";
+import AuthProvider from "../../AuthContext";
+import CheckAuthAdmin from "../../componentAdmin/CheckAuthAdmin";
+import Footer from "../../componentAdmin/Footer";
 
 export default function Home() {
     return (
         <AuthProvider>
             <CheckAuthAdmin />
-            <EventProvider >
+            <ClientProvider >
                 <main className="">
                     <Navbar active="event" />
                     <Section />
                     <Footer />
                 </main>
-            </EventProvider>
+            </ClientProvider>
         </AuthProvider >
     );
 }

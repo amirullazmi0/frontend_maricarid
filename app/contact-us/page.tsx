@@ -4,6 +4,7 @@ import ContactUs from "../componentDashboard/ContactUs";
 import TronAboutUs from "../componentGlobals/TronAboutUs";
 import Section from "../service/Section";
 import TronContactUs from "../componentGlobals/TronContactUs";
+import Media from "./Media";
 
 
 export default function Home() {
@@ -11,9 +12,10 @@ export default function Home() {
     <main className="">
       <Navbar active="contactUs" />
       <TronContactUs />
+      <Media />
       <ContactUs />
       {/* <OurClients /> */}
-      <Section />
+      {/* <Section /> */}
       <Footer />
     </main>
   );

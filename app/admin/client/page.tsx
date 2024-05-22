@@ -7,6 +7,7 @@ import Navbar from "../componentAdmin/Navbar";
 import AuthProvider from "../AuthContext";
 import CheckAuthAdmin from "../componentAdmin/CheckAuthAdmin";
 import ClientProvider from "./ClientContext";
+import Footer from "../componentAdmin/Footer";
 
 export default function Home() {
     return (
@@ -16,6 +17,7 @@ export default function Home() {
                 <main className="">
                     <Navbar active="client" />
                     <Section />
+                    <Footer />
                 </main>
             </ClientProvider>
         </AuthProvider >

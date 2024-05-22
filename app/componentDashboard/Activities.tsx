@@ -3,14 +3,15 @@ import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import activity from "../../public/activity.jpeg";
 import Link from 'next/link';
-import { Router } from 'next/router';
 import { eventDTO } from '@/model/event.model';
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 
 const Activities = () => {
     const [data, setData] = useState<eventDTO[]>()
     const API_URL = process.env.API_URL
+    const navigation = useRouter()
     const getData = async () => {
         try {
             const response = await axios.get(`${API_URL}/api/event`)
@@ -21,6 +22,10 @@ const Activities = () => {
         } catch (error) {
             console.log(error);
         }
+    }
+
+    const handleNavigation = (e: string) => {
+        navigation.push(`/event/${e}`)
     }
 
     useEffect(() => {
@@ -41,19 +46,19 @@ const Activities = () => {
                         {/* <div className=" bg-[url('/container.jpg')] min-h-[50vh] bg-center bg-cover"></div> */}
                         {data && data.length > 0 ? data.map((item: eventDTO, index: number) => {
                             const desc = item.desc
-                            const truncate = desc?.slice(0, 50) + `...`
+                            const truncate = desc?.slice(0, 30) + `...`
                             if (index < 3) {
                                 return (
                                     <React.Fragment key={index}>
                                         <div className="card grid lg:grid-cols-2 bg-dark shadow-xl overflow-hidden rounded-sm w-[45%]">
                                             <div className="aspect-square overflow-hidden">
-                                                <img className='object-cover h-full w-fit hover:scale-105 duration-200' src={item.images ? item.images[0] : '/default.jpg'} alt="Album" />
+                                                <img className='object-cover h-full hover:scale-105 duration-200' src={item.images ? item.images[0] : '/default.jpg'} alt="Album" />
                                             </div>
                                             <div className="card-body">
                                                 <h2 className="card-title text-white capitalize">{item.name}</h2>
-                                                <p className='text-slate-300 font-thin p-2'>{truncate}</p>
+                                                <p className='text-slate-300 font-thin p-2 text-sm'>{truncate}</p>
                                                 <div className="card-actions justify-end">
-                                                    <button className="btn btn-ghost text-white">Detail</button>
+                                                    <button onClick={()=> handleNavigation(`${item.id}`)} className="btn btn-ghost text-white">Detail</button>
                                                 </div>
                                             </div>
                                         </div>

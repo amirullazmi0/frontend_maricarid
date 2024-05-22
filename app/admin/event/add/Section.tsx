@@ -1,32 +1,32 @@
 'use client'
+import React, { useContext, useEffect, useState } from 'react'
+import EventProvider, { EventContext } from '../EventContext'
 import { eventDTO } from '@/model/event.model'
 import axios from 'axios'
-import React, { useState, useContext, useEffect } from 'react'
-import EventProvider, { EventContext } from './EventContext'
+import { useRouter } from 'next/navigation'
 
-const FormAddEvent = () => {
+const Section = () => {
+
     const EventState: any = useContext(EventContext)
-
+    const navigation = useRouter()
     const [Modal, setModal] = useState<boolean>(false)
 
     const [name, setName] = useState<string | undefined>('')
     const [desc, setDesc] = useState<string | undefined>('')
     const [images, setImages] = useState<any | undefined>('')
     const [require, setRequire] = useState<boolean>(false)
-
-    const handleCloseModal = () => {
-        setName('')
-        setDesc('')
-        setImages('')
-        setModal(false)
-    }
-    useEffect(() => {
-        console.log(images);
-
-    }, [images])
+    const [previewUrl, setPreviewUrl] = useState<any>(null);
 
     const handleFileChange = (event: any) => {
-        setImages(event.target.files[0]);
+        const file = event.target.files[0]
+        if (file) {
+            setImages(file);
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setPreviewUrl(reader.result);
+            };
+            reader.readAsDataURL(file);
+        }
     };
 
     const handleAddEvent = async () => {
@@ -52,17 +52,15 @@ const FormAddEvent = () => {
                 })
 
                 if (response.data.success == true) {
-                    window.scrollTo({
-                        top: 0
-                    })
                     EventState.setAddStatus(true)
                     setName('')
                     setDesc('')
                     setImages('')
                     setModal(false)
                     setTimeout(() => {
+                        navigation.push(`/admin/event`)
                         EventState.setAddStatus(false)
-                    }, 10000)
+                    }, 5000)
                 }
             } catch (error) {
                 window.scrollTo({
@@ -80,22 +78,23 @@ const FormAddEvent = () => {
             }, 10000)
         }
     }
-
-    const renderModal = () => {
-        if (Modal == true) {
-            window.document.body.style.overflow = 'hidden'
-            return (
-                <>
-                    <div className="fixed w-screen min-h-screen bg-[#000000d8] top-0 left-0 flex items-center justify-center z-50">
-                        <button onClick={() => handleCloseModal()} className="btn btn-ghost fixed top-0 right-0 m-4 btn-circle">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="w-6 h-6">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-                            </svg>
-                        </button>
-                        <div className="grid gap-4 lg:min-w-[40vw]">
-                            <div className="text-xl uppercase text-white font-bold bg-red-600 p-2 rounded-sm w-fit">
-                                Form Add Event
+    return (
+        <div className='bg-admin'>
+            <div className="flex justify-center p-4">
+                <div className="lg:w-[50%] w-[100%] p-4 bg-black">
+                    {EventState.addStatus == true &&
+                        <React.Fragment>
+                            <div className="p-2 bg-lime-500 uppercase font-bold mb-2 flex items-center justify-between rounded-sm">
+                                Add Event Successfully
+                                <div className=""><span className="loading loading-dots loading-sm"></span></div>
                             </div>
+                        </React.Fragment>
+                    }
+                    <div className=" text-xl uppercase text-white font-bold bg-red-600 p-2 rounded-sm w-fit">
+                        Form Add Event
+                    </div>
+                    <div className="grid gap-2 mt-3">
+                        <div className=" grid gap-2">
                             {require == true &&
                                 <div className=" border-red-600 border-4 text-red-600 uppercase font-bold p-3 rounded-sm text-center flex justify-between">
                                     <div className="">
@@ -109,32 +108,26 @@ const FormAddEvent = () => {
                             }
                             <div className="">
                                 <div className="text-white mb-1">Event Name</div>
-                                <input value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder="event name" className="input input-bordered w-full" />
+                                <input value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder="event name" className="input input-bordered rounded-sm w-full" />
                             </div>
                             <div className="">
                                 <div className="text-white mb-1">Event Description</div>
-                                <textarea value={desc} onChange={(e) => setDesc(e.target.value)} className="textarea textarea-bordered w-full" placeholder="event description" rows={10}></textarea>
+                                <textarea value={desc} onChange={(e) => setDesc(e.target.value)} className="textarea textarea-bordered w-full rounded-sm" placeholder="event description" rows={5}></textarea>
                             </div>
                             <div className="">
-                                <div className="text-white mb-1">Event Description</div>
-                                <input accept="image/*" onChange={handleFileChange} type="file" className="file-input file-input-bordered w-full" />
+                                <div className="text-white mb-1">Event Image</div>
+                                <input accept="image/*" onChange={handleFileChange} type="file" className="file-input border-none rounded-sm w-full" />
                             </div>
-                            <hr />
-                            <button onClick={handleAddEvent} className="btn btn-success uppercase">Save</button>
+                            <div className="aspect-square lg:w-[20%] w-[35%]">
+                                <img src={previewUrl ? previewUrl : '/default.jpg'} alt="Image Preview" className='object-cover h-full w-full' />
+                            </div>
+                            <button onClick={handleAddEvent} className=" btn btn-success uppercase rounded-sm">Save</button>
                         </div>
                     </div>
-                </>
-            )
-        } else {
-            window.document.body.style.overflow = 'auto'
-        }
-    }
-    return (
-        <div>
-            {renderModal()}
-            <button onClick={() => setModal(true)} className='btn btn-info rounded-sm'>Add Event</button>
+                </div>
+            </div>
         </div>
     )
 }
 
-export default FormAddEvent
+export default Section
