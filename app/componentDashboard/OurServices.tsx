@@ -95,7 +95,7 @@ const OurServices = () => {
                         </div>
                     </div>
                 </div>
-                <div className="lg:md:flex hidden col-span-2 feature-left h-full bg-[url('/container.jpg')] bg-cover bg-center relative">
+            <div className="lg:md:flex hidden col-span-2 feature-left h-full bg-[url('/container2.jpg')] bg-cover bg-center relative">
                     <div className="absolute h-full border-t-service border-slate-50 "></div>
                 </div>
             </div>

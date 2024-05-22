@@ -17,9 +17,9 @@ const ContactUs = () => {
                                 <div className="">
                                     <span className='text-black uppercase font-bold p-1 bg-warning'>Maricar Group</span> is widely trusted by customers because it provides the best offers for Shipping Agency and Logistics Services.
                                 </div>
-                                <div className="mt-3">
+                                {/* <div className="mt-3">
                                     Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere ex quam consequuntur id voluptatum fugit optio ducimus harum cumque fuga cupiditate nemo nisi iure, quibusdam commodi magnam illum tempora corporis.
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                         <div className="grid grid-cols-10">
@@ -44,7 +44,7 @@ const ContactUs = () => {
                                     </div>
                                     <div className="lg:md:col-span-2 grid gap-1">
                                         <div className="text-sm font-normal">Comment</div>
-                                        <textarea className="textarea textarea-bordered rounded-sm" rows={5} ></textarea>
+                                        <textarea className="textarea textarea-bordered rounded-sm" rows={5} style={{ resize: 'none' }} ></textarea>
                                     </div>
                                     <div className="lg:md:col-span-2 grid gap-1">
                                         <button className="btn btn-sm btn-neutral rounded-sm uppercase">

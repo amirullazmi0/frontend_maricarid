@@ -2,7 +2,7 @@
 import { eventDTO } from '@/model/event.model'
 import axios from 'axios'
 import React, { useState, useContext, useEffect } from 'react'
-import EventProvider, { EventContext} from './EventContext'
+import EventProvider, { EventContext } from './EventContext'
 
 interface props {
     modal: boolean
@@ -28,7 +28,6 @@ const FormEditEvent: React.FC<props> = ({ modal }) => {
             setName(select.name)
             setDesc(select.desc)
         }
-
     }, [EventState.modalEdit])
 
     const handleAddEvent = async () => {
@@ -39,13 +38,15 @@ const FormEditEvent: React.FC<props> = ({ modal }) => {
                 const data: eventDTO = {
                     name: name,
                     desc: desc,
-                    images: images
+                    // images: images
                 }
 
                 const access_token = sessionStorage.getItem('access_token')
-                console.log(access_token);
 
-                const response = await axios.put(`${API_URL}/api/event/${EventState.editSelect.id}`, data, {
+                const response = await axios.put(`${API_URL}/api/event/${EventState.editSelect.id}`, {
+                    name: name,
+                    desc: desc
+                }, {
                     headers: {
                         Authorization: `Bearer ${access_token}`
                     }

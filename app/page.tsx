@@ -7,7 +7,7 @@ import Footer from "./componentGlobals/Footer";
 export default function Home() {
   return (
     <main className="">
-      <Navbar />
+      <Navbar active="home" />
       <Tron />
       <Section />
       <Footer />

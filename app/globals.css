@@ -33,6 +33,54 @@ body {
   max-height: 110vh;
 }
 
+.tron-service {
+  background: url(../public/service.jpg);
+  background-position: center;
+  background-size: cover;
+  min-height: 70vh;
+  max-height: 90vh;
+}
+
+.tron-marine-traffic {
+  background: url(../public/tronTraffic.jpeg);
+  background-position: center;
+  background-size: cover;
+  min-height: 100vh;
+  max-height: 110vh;
+}
+
+.tron-event {
+  background: url(../public/tronEvent.jpg);
+  background-position: center;
+  background-size: cover;
+  min-height: 100vh;
+  max-height: 110vh;
+}
+
+.tron-event-item {
+  background: url(../public/shipping.jpg);
+  background-position: center;
+  background-size: cover;
+  min-height: 70vh;
+  max-height: 90vh;
+}
+
+.tron-aboutUs {
+  background: url(../public/tronAboutUs.jpg);
+  background-position: center;
+  background-size: cover;
+  min-height: 100vh;
+  max-height: 110vh;
+}
+
+.tron-contactUs {
+  background: url(../public/tronContactUs.jpg);
+  background-position: center;
+  background-size: cover;
+  min-height: 100vh;
+  max-height: 110vh;
+}
+
 .nav-right {
   border-top: 15vh solid var(--dark);
   border-left: 0px solid transparent;

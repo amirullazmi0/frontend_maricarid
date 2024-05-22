@@ -1,9 +1,31 @@
 'use client'
 import Image from 'next/image'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import dataJson from "../componentDashboard/client.json";
+import { clientDTO } from '@/model/client.model';
+import axios from 'axios';
+
 const OurClients = () => {
-    const dataClient = dataJson
+    const [dataClient, setDataClient] = useState<clientDTO[]>()
+    const API_URL = process.env.API_URL
+
+    const getData = async () => {
+        try {
+            const response = await axios.get(`${API_URL}/api/client`)
+            console.log(response.data);
+
+
+            if (response.data.success == true) {
+                setDataClient(response.data.data)
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        getData()
+    }, [])
 
     return (
         <div className='min-w-screen pt-4 pb-4'>
@@ -12,14 +34,16 @@ const OurClients = () => {
                     <div className="lg:md:text-xl">
                         Our Clients
                     </div>
-                    <div className="grid lg:md:grid-cols-5 grid-cols-2 gap-2 ">
+                    <div className="flex gap-2 justify-center mt-3">
                         {dataClient && dataClient.map(
-                            (item: { name: string, url: string }, index: number) => {
-                                return (
-                                    <div key={index} className="flex justify-center items-center shadows-gray rounded-md">
-                                        <Image alt={item.name} src={item.url} width={200} height={100} />
-                                    </div>
-                                )
+                            (item: clientDTO, index: number) => {
+                                if (index < 3) {
+                                    return (
+                                        <div key={index} className="flex justify-center items-center aspect-square shadows-gray rounded-md lg:w-[23%] w-[23%] ">
+                                            <img className='hover:scale-100 duration-200 scale-90' src={item.images} alt="" />
+                                        </div>
+                                    )
+                                }
                             })}
                     </div>
                 </div>
