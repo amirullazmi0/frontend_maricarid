@@ -103,7 +103,7 @@ const Section = () => {
                                     <input value={password} onChange={(e) => setPassword(e.target.value)} type={isChecked ? 'text' : 'password'} placeholder="password" className="input input-bordered w-full" />
                                 </div>
                                 <div className=" flex justify-end gap-3 ">
-                                    <div >Lihat Password</div>
+                                    <div >Show Password</div>
                                     <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} className="checkbox" />
                                 </div>
 
