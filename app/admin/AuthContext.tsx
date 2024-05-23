@@ -29,8 +29,8 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
             } else {
                 setAlert(true)
                 setTimeout(() => {
-                    setAlert(false)
                     router.push('/login')
+                    setAlert(false)
                 }, 5000)
             }
 
