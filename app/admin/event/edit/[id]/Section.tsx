@@ -18,6 +18,8 @@ const Section = ({ id }: { id: string }) => {
     const [require, setRequire] = useState<boolean>(false)
     const [previewUrl, setPreviewUrl] = useState<any>(null);
 
+    const [access_token, setAccessToken] = useState<string | null>()
+
     const handleFileChange = (event: any) => {
         const file = event.target.files[0]
         if (file) {
@@ -88,7 +90,6 @@ const Section = ({ id }: { id: string }) => {
                 formData.append('desc', desc)
                 formData.append('images', images)
 
-                const access_token = sessionStorage.getItem('access_token')
 
                 const response = await axios.put(`${API_URL}/api/event/${id}`, formData, {
                     headers: {
@@ -126,6 +127,10 @@ const Section = ({ id }: { id: string }) => {
 
     useEffect(() => {
         getEvent()
+        if (typeof window !== 'undefined') {
+            const token = sessionStorage.getItem('access_token');
+            setAccessToken(token);
+        }
     }, [])
     return (
         <div className='bg-admin'>

@@ -19,6 +19,9 @@ const Section = () => {
     const [require, setRequire] = useState<boolean>(false)
     const [previewUrl, setPreviewUrl] = useState<any>(null);
 
+    const [access_token, setAccessToken] = useState<string | null>()
+    const API_URL = process.env.API_URL
+
     const handleFileChange = (event: any) => {
         const file = event.target.files[0]
         if (file) {
@@ -65,7 +68,6 @@ const Section = () => {
         }
     }
 
-    const API_URL = process.env.API_URL
     const handleAddEvent = async () => {
         if (name && desc) {
             try {
@@ -78,8 +80,6 @@ const Section = () => {
                     desc: desc,
                     images: images
                 }
-
-                const access_token = sessionStorage.getItem('access_token')
 
                 const response = await axios.post(`${API_URL}/api/event`, formData, {
                     headers: {
@@ -114,6 +114,14 @@ const Section = () => {
             }, 10000)
         }
     }
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const token = sessionStorage.getItem('access_token');
+            setAccessToken(token);
+        }
+    }, [])
+
     return (
         <div className='bg-admin'>
             <div className="flex justify-center p-4">

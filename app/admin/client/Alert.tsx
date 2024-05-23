@@ -5,11 +5,6 @@ import { ClientContext } from './ClientContext'
 const Alert = () => {
     const ClientState = useContext(ClientContext)
 
-    useEffect(() => {
-        console.log('add client status', ClientState.addStatus);
-
-    }, [ClientState.addStatus])
-
     return (
         <>
             {ClientState.addStatus === true &&

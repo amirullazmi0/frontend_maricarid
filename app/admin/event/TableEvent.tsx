@@ -18,10 +18,10 @@ const TableEvent = () => {
     const [deleteSelect, setDeleteSelect] = useState<eventDTO | null>(null)
 
     const navigation = useRouter()
+    const API_URL = process.env.API_URL
 
     const getData = async () => {
         try {
-            const API_URL = process.env.API_URL
 
             const response = await axios.get(`${API_URL}/api/event`)
 
@@ -33,8 +33,7 @@ const TableEvent = () => {
         }
     }
 
-    const API_URL = process.env.API_URL
-    const TOKEN = sessionStorage.getItem('access_token')
+    const [access_token, setAccessToken] = useState<string | null>()
 
     const handleDelete = async () => {
         try {
@@ -43,7 +42,7 @@ const TableEvent = () => {
                     id: deleteSelect ? deleteSelect.id : ''
                 },
                 headers: {
-                    Authorization: `Bearer ${TOKEN}`
+                    Authorization: `Bearer ${access_token}`
                 }
             })
 
@@ -129,6 +128,10 @@ const TableEvent = () => {
 
     useEffect(() => {
         getData()
+        if (typeof window !== 'undefined') {
+            const token = sessionStorage.getItem('access_token');
+            setAccessToken(token);
+        }
     }, [deleteStatus])
     return (
         <div className='text-white mt-4'>

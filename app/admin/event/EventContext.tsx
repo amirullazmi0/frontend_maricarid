@@ -2,7 +2,7 @@
 
 import { eventDTO } from '@/model/event.model'
 import axios from 'axios'
-import { createContext, Dispatch, SetStateAction, useState } from 'react'
+import { createContext, Dispatch, SetStateAction, useEffect, useState } from 'react'
 
 interface BaseContextType {
     addStatus: boolean;
@@ -51,11 +51,12 @@ export default function EventProvider({ children }: { children: React.ReactNode 
     const [editSelect, setEditSelect] = useState<eventDTO | undefined>(undefined)
     const [editStatus, setEditStatus] = useState<boolean>(false)
 
+    const API_URL = process.env.API_URL
+    const [access_token, setAccessToken] = useState<string | null>()
+
     const handleDeleteEvent = async () => {
         if (deleteSelect) {
             try {
-                const API_URL = process.env.API_URL
-                const access_token = sessionStorage.getItem('access_token')
                 const response = await axios.delete(`${API_URL}/api/event`, {
                     data: {
                         id: deleteSelect.id
@@ -76,6 +77,13 @@ export default function EventProvider({ children }: { children: React.ReactNode 
             }
         }
     }
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const token = sessionStorage.getItem('access_token');
+            setAccessToken(token);
+        }
+    }, [])
 
     return <EventContext.Provider
         value={{

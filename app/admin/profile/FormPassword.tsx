@@ -9,7 +9,8 @@ const FormPassword = () => {
     const [alertSuccess, setAlertSuccess] = useState<boolean>(false)
     const Auth: any = useContext(AuthContext)
     const API_URL = process.env.API_URL
-    const access_token = sessionStorage.getItem('access_token')
+    const [access_token, setAccessToken] = useState<string | null>()
+
     const [Email, setEmail] = useState<string>('')
     const handleUpdatePassword = async () => {
         try {
@@ -39,6 +40,10 @@ const FormPassword = () => {
     useEffect(() => {
         if (Auth.currentUser) {
             setEmail(Auth.currentUser.email)
+        }
+        if (typeof window !== 'undefined') {
+            const token = sessionStorage.getItem('access_token');
+            setAccessToken(token);
         }
     }, [Auth.currentUser])
 

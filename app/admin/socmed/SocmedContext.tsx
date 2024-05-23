@@ -1,7 +1,7 @@
 'use client'
 import { socmedDTO } from "@/model/socmed.model";
 import axios from "axios";
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 export const SocmedContext = createContext({})
 
 export default function SocmedProvider({ children }: { children: React.ReactNode }) {
@@ -9,10 +9,10 @@ export default function SocmedProvider({ children }: { children: React.ReactNode
     const [failed, setFailed] = useState<boolean | undefined>(false)
     const [updateSelect, setUpdateSelect] = useState<socmedDTO>()
     const [alertUpdate, setAlertUpdate] = useState<boolean | undefined>(false)
+    const [access_token, setAccessToken] = useState<string | null>()
     const getSocmed = async () => {
         try {
             const API_URL = process.env.API_URL
-            const access_token = sessionStorage.getItem('access_token')
             const response = await axios.get(`${API_URL}/api/socmed`, {
                 headers: {
                     Authorization: `Bearer ${access_token}`
@@ -55,6 +55,13 @@ export default function SocmedProvider({ children }: { children: React.ReactNode
             console.log(error);
         }
     }
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const token = sessionStorage.getItem('access_token');
+            setAccessToken(token);
+        }
+    }, [])
 
     return (
         <SocmedContext.Provider value={{

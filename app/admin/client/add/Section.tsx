@@ -18,6 +18,8 @@ const Section = () => {
     const [require, setRequire] = useState<boolean>(false)
     const [previewUrl, setPreviewUrl] = useState<any>(null);
 
+    const [access_token, setAccessToken] = useState<string | null>()
+
     const API_URL = process.env.API_URL
 
     const handleFileChange = (client: any) => {
@@ -39,9 +41,6 @@ const Section = () => {
                 formData.append('name', name)
                 formData.append('desc', desc ? desc : '')
                 formData.append('images', images)
-
-
-                const access_token = sessionStorage.getItem('access_token')
 
                 const response = await axios.post(`${API_URL}/api/client`, formData, {
                     headers: {
@@ -98,12 +97,6 @@ const Section = () => {
                                 </div>
 
                             </div>
-                            {/* <div className="">
-                                <div className="">
-                                    Add Client Successfully
-                                </div>
-                                <div className="">redirect to table event</div>
-                            </div> */}
                         </div>
                     </div>
                 </React.Fragment>
@@ -111,19 +104,18 @@ const Section = () => {
         }
     }
 
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const token = sessionStorage.getItem('access_token');
+            setAccessToken(token);
+        }
+    }, [])
+
     return (
         <div className='bg-admin min-h-[70vh]'>
             <div className="flex justify-center p-4">
                 <div className="lg:w-[60%] w-[100%] p-4 bg-black">
                     {renderAlertSuccess()}
-                    {/* {clientState.addStatus == true &&
-                        <React.Fragment>
-                            <div className="p-2 bg-lime-500 uppercase font-bold mb-2 flex items-center justify-between rounded-sm">
-                                Add client Successfully
-                                <div className=""><span className="loading loading-dots loading-sm"></span></div>
-                            </div>
-                        </React.Fragment>
-                    } */}
                     <div className=" text-xl uppercase text-white font-bold bg-red-600 p-2 rounded-sm w-fit">
                         Form Add client
                     </div>

@@ -10,7 +10,7 @@ const FormInstagram = () => {
     })
 
     const API_URL = process.env.API_URL
-    const access_token = sessionStorage.getItem('access_token')
+    const [access_token, setAccessToken] = useState<string | null>()
     const [alertSucess, setAlertSuccess] = useState<boolean | undefined>(undefined)
 
     const handleUpdate = async () => {
@@ -48,6 +48,10 @@ const FormInstagram = () => {
 
     useEffect(() => {
         getData()
+        if (typeof window !== 'undefined') {
+            const token = sessionStorage.getItem('access_token');
+            setAccessToken(token);
+        }
     }, [])
 
     return (

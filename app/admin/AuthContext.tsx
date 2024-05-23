@@ -3,7 +3,7 @@
 import { UserDTO } from '@/model/user.model'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
-import { createContext, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
 
 export const AuthContext = createContext({})
 
@@ -12,11 +12,11 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
     const [currentUser, setCurrentUser] = useState<UserDTO>()
     const [Alert, setAlert] = useState<boolean>(false)
     const router = useRouter()
+    const [access_token, setAccessToken] = useState<string | null>()
 
     const CheckAuth = async () => {
         try {
             const API_URL = process.env.API_URL
-            const access_token = sessionStorage.getItem('access_token')
             const response = await axios.get(`${API_URL}/api/auth/checkAuth`, {
                 headers: {
                     Authorization: `Bearer ${access_token}`
@@ -42,6 +42,13 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
             }, 10000)
         }
     }
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const token = sessionStorage.getItem('access_token');
+            setAccessToken(token);
+        }
+    }, [])
 
     return <AuthContext.Provider
         value={{

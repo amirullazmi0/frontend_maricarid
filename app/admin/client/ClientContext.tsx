@@ -49,12 +49,12 @@ export default function ClientProvider({ children }: { children: ReactNode }) {
     const [modalEdit, setModalEdit] = useState<boolean>(false);
     const [editSelect, setEditSelect] = useState<clientDTO | undefined>(undefined);
     const [editStatus, setEditStatus] = useState<boolean>(false);
+    const [access_token, setAccessToken] = useState<string | null>()
 
     const handleDeleteClient = async () => { // Updated function signature
         if (deleteSelect) {
             try {
                 const API_URL = process.env.API_URL;
-                const access_token = sessionStorage.getItem('access_token');
                 const response = await axios.delete(`${API_URL}/api/client`, {
                     data: {
                         id: deleteSelect.id
@@ -75,6 +75,13 @@ export default function ClientProvider({ children }: { children: ReactNode }) {
             }
         }
     };
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const token = sessionStorage.getItem('access_token');
+            setAccessToken(token);
+        }
+    }, [])
 
     return (
         <ClientContext.Provider
