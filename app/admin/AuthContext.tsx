@@ -31,7 +31,7 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
                 setTimeout(() => {
                     setAlert(false)
                     router.push('/login')
-                }, 10000)
+                }, 5000)
             }
 
         } catch (error) {
@@ -40,7 +40,7 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
             setTimeout(() => {
                 setAlert(false)
                 router.push('/login')
-            }, 10000)
+            }, 5000)
         }
     }
 
