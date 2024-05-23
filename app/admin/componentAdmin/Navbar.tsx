@@ -3,6 +3,7 @@ import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'
 import logoWhite from "../../../public/assets/fullWhite.png";
 import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie'
 
 const Navbar = ({ active }: { active: string }) => {
     const navigation = useRouter()
@@ -13,7 +14,7 @@ const Navbar = ({ active }: { active: string }) => {
     }
 
     const handleLogout = () => {
-        sessionStorage.removeItem('access_token')
+        Cookies.remove('access_token')
         navigation.push('/login')
     }
 

@@ -6,7 +6,8 @@ import logo from "../../public/assets/fullWhite.png";
 import React, { useContext, useEffect, useState } from 'react'
 import 'dotenv/config'
 import Cookies from 'js-cookie'
-import { AuthContext } from '../admin/AuthContext';
+import Link from 'next/link';
+
 const Section = () => {
     const API_URL = process.env.API_URL
 
@@ -53,7 +54,7 @@ const Section = () => {
             return (
                 <div className="p-3 bg-green-200 rounded text-green-700 flex justify-between">
                     <div className="">
-                        Anda Berhasil Login
+                        Login Successfully
                     </div>
                     <span className="loading loading-dots loading-sm"></span>
                 </div>
@@ -62,7 +63,7 @@ const Section = () => {
             return (
                 <div className="p-3 bg-red-200 rounded text-red-700 flex justify-between">
                     <div className="">
-                        Periksa email dan password
+                        Check email & password
                     </div>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
@@ -109,6 +110,9 @@ const Section = () => {
                                 <hr />
                                 <div className="flex justify-center mt-5">
                                     <button onClick={() => handleLogin()} type='submit' className='btn btn-neutral btn-wide'> Login</button>
+                                </div>
+                                <div className="flex justify-center">
+                                    <span className='text-sm'>Back to dashboard <Link className='btn btn-sm btn-warning' href={'/'}>Here</Link></span>
                                 </div>
                             </div>
                         </div>
