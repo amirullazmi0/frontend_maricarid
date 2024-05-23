@@ -74,11 +74,11 @@ const FormVisiMisi = () => {
                     </div>
                 }
                 <div className="">
-                    <div className="text-slate-300 uppercase font-thin">Misi</div>
+                    <div className="text-slate-300 uppercase font-thin">Vision</div>
                     <textarea value={visi} onChange={(e) => setVisi(e.target.value)} rows={5} className='textarea w-full rounded-none'></textarea>
                 </div>
                 <div className="">
-                    <div className="text-slate-300 uppercase font-thin">Misi</div>
+                    <div className="text-slate-300 uppercase font-thin">Mission</div>
                     <textarea value={misi} onChange={(e) => setMisi(e.target.value)} rows={5} className='textarea w-full rounded-none'></textarea>
                 </div>
             </div>
