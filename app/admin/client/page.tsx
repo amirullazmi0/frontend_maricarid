@@ -3,11 +3,10 @@ import Image from "next/image";
 import React from "react";
 import Section from "./Section";
 import Navbar from "../componentAdmin/Navbar";
-
 import AuthProvider from "../AuthContext";
 import CheckAuthAdmin from "../componentAdmin/CheckAuthAdmin";
-import ClientProvider from "./ClientContext";
 import Footer from "../componentAdmin/Footer";
+import ClientProvider from "./ClientContext";
 
 export default function Home() {
     return (
@@ -16,7 +15,9 @@ export default function Home() {
             <ClientProvider >
                 <main className="">
                     <Navbar active="client" />
-                    <Section />
+                    <div className="mt-[20vh]">
+                        <Section />
+                    </div>
                     <Footer />
                 </main>
             </ClientProvider>

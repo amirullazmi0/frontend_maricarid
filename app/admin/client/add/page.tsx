@@ -14,8 +14,10 @@ export default function Home() {
             <CheckAuthAdmin />
             <ClientProvider >
                 <main className="">
-                    <Navbar active="event" />
-                    <Section />
+                    <Navbar active="client" />
+                    <div className="mt-[20vh]">
+                        <Section />
+                    </div>
                     <Footer />
                 </main>
             </ClientProvider>

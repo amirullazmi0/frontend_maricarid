@@ -30,21 +30,32 @@ const OurClients = () => {
     return (
         <div className='min-w-screen pt-4 pb-4'>
             <div className="flex justify-center items-center">
-                <div className="lg:md:w-[80vw] w-[90vw] uppercase font-bold">
-                    <div className="lg:md:text-xl">
+                <div className="max-w-[100vw] min-w-[80vw] uppercase font-bold">
+                    <div className="lg:md:text-xl lg:p-0 p-2">
                         Our Clients
                     </div>
                     <div className="flex gap-2 justify-center mt-3">
-                        {dataClient && dataClient.map(
-                            (item: clientDTO, index: number) => {
-                                if (index < 3) {
+                        <div className="carousel rounded-box gap-4">
+
+                            {dataClient ? dataClient.map(
+                                (item: clientDTO, index: number) => {
+                                    // if (index < 3) {
                                     return (
-                                        <div key={index} className="flex justify-center items-center aspect-square shadows-gray rounded-md lg:w-[23%] w-[23%] ">
-                                            <img className='hover:scale-100 duration-200 scale-90' src={item.images} alt="" />
+                                        // <div key={index} className="flex justify-center items-center aspect-square shadows-gray rounded-md lg:w-[23%] w-[23%] ">
+                                        //     <img className='hover:scale-100 duration-200 scale-90' src={item.images} alt="" />
+                                        // </div>
+                                        <div className="carousel-item aspect-square h-40 flex items-center">
+                                            <img src={item.images} alt="Burger" className='object-cover h-fit w-full' />
                                         </div>
                                     )
-                                }
-                            })}
+                                    // }
+                                })
+                                :
+                                <div className="min-h-[20vh] flex justify-center items-center w-full text-center">
+                                    <span className="loading loading-dots loading-lg text-black"></span>
+                                </div>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>

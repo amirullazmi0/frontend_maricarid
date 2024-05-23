@@ -3,16 +3,22 @@ import { clientDTO } from '@/model/client.model'
 import axios from 'axios'
 import React, { useContext, useEffect, useState } from 'react'
 import moment from 'moment';
-import 'moment/locale/id'; // Import Indonesian locale
 import { ClientContext } from './ClientContext';
+import 'moment/locale/id'; // Import Indonesian locale
+import Image from 'next/image'
+import successIcon from "../../../public/icon/Success.gif";
+import { useRouter } from 'next/navigation';
+moment.locale('id');
+
 
 const TableClient = () => {
-    moment.locale('id');
-    const clientState: any = useContext(ClientContext)
+    const clientState = useContext(ClientContext)
     const [dataclient, setDataclient] = useState<clientDTO[]>()
     const [AlertDelete, setAlertDelete] = useState<boolean>(false)
+    const [deleteStatus, setDeleteStatus] = useState<boolean>(false)
+    const [deleteSelect, setDeleteSelect] = useState<clientDTO | null>(null)
 
-    const [deleteSelect, setDeleteSelect] = useState<clientDTO | undefined>(undefined)
+    const navigation = useRouter()
 
     const getData = async () => {
         try {
@@ -22,19 +28,42 @@ const TableClient = () => {
 
             if (response.data.success === true) {
                 setDataclient(response.data.data)
-                console.log(response.data.data);
             }
         } catch (error) {
 
         }
     }
 
+    const API_URL = process.env.API_URL
+    const TOKEN = sessionStorage.getItem('access_token')
+    const handleDelete = async () => {
+        try {
+            const response = await axios.delete(`${API_URL}/api/client/`, {
+                data: {
+                    id: deleteSelect ? deleteSelect.id : ''
+                },
+                headers: {
+                    Authorization: `Bearer ${TOKEN}`
+                }
+            })
+
+            if (response.data) {
+                setDeleteStatus(true)
+                setTimeout(() => {
+                    setDeleteSelect(null)
+                    setDeleteStatus(false)
+                    setAlertDelete(false)
+                }, 5000)
+            }
+        } catch (error) {
+
+        }
+    }
     const renderAlertDelete = () => {
-        if (AlertDelete == true) {
-            window.document.body.style.overflow = 'hidden'
+        if (AlertDelete == true && deleteStatus == false) {
             return (
                 <div className="fixed w-screen min-h-screen bg-[#000000d8] top-0 left-0 flex items-center justify-center z-50">
-                    <button onClick={() => handleCloseAlertDelete()} className="btn btn-ghost fixed top-0 right-0 m-4 btn-circle">
+                    <button onClick={() => setAlertDelete(false)} className="btn btn-ghost fixed top-0 right-0 m-4 btn-circle">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="w-6 h-6">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
                         </svg>
@@ -45,42 +74,64 @@ const TableClient = () => {
                                 <div className="">
                                     Are you sure to delete client with name <span className='text-warning'>{clientState.deleteSelect?.name}</span>  ?
                                 </div>
-                                <div className="flex justify-end mt-4 gap-2">
+                                <div className="flex justify-end mt-4 gap-2 ">
                                     <button onClick={() => handleCloseAlertDelete()} className='btn btn-info uppercase text-white'>Cancel</button>
-                                    <button onClick={handleDelete} className='btn border-none bg-red-600 hover:bg-red-700 uppercase text-white'>Sure</button>
+                                    <button onClick={() => handleDelete()} className='btn border-none bg-red-600 hover:bg-red-700 uppercase text-white'>Sure</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             )
-        } else {
-            window.document.body.style.overflow = 'auto'
+        }
+
+        if (AlertDelete == true && deleteStatus == true) {
+            return (
+                <React.Fragment>
+                    <div className="fixed w-screen h-screen top-0 left-0 bg-[#000000c9] flex justify-center items-center z-50">
+                        <div className=" p-4 text-center min-h-[30%] lg:w-[40%] flex justify-center items-center">
+                            <div className="">
+                                <div className="flex justify-center">
+                                    <Image alt='' src={successIcon} className='h-32 w-fit' />
+                                </div>
+
+                                <div className="w-full text-center font-bold uppercase text-xl text-white">
+                                    <div className="">
+                                        Delete Data Successfully
+                                    </div>
+                                    <div className="mt-3">
+                                        <span className="loading loading-dots loading-md"></span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </React.Fragment>
+            )
         }
     }
 
-    const handelAlertDelete = (item: clientDTO) => {
-        setAlertDelete(true)
-        clientState.setDeleteSelect(item)
-    }
-
-    const handelModalEdit = (item: clientDTO) => {
-        clientState.setModalEdit(true)
-        clientState.setEditSelect(item)
-    }
-
     const handleCloseAlertDelete = () => {
+        setDeleteSelect(null)
         setAlertDelete(false)
-        clientState.setDeleteSelect(undefined)
     }
-    const handleDelete = () => {
-        clientState.handleDeleteclient()
-        setAlertDelete(false)
+
+    const handelAlertDelete = (item: clientDTO) => {
+        setDeleteSelect(item)
+        setAlertDelete(true)
+    }
+
+    const handleNavigation = (e: string) => {
+        navigation.push(`/admin/client/${e}`)
     }
 
     useEffect(() => {
         getData()
-    }, [clientState.addStatus, clientState.deleteStatus, clientState.editStatus])
+
+        console.log('delete status', deleteStatus);
+
+    }, [deleteStatus])
     return (
         <div className='text-white mt-4'>
             {renderAlertDelete()}
@@ -91,22 +142,18 @@ const TableClient = () => {
                     return (
                         <React.Fragment key={index}>
                             {/* CARD */}
-                            <div className="card card-compact w-full bg-[#ffffff29] shadow-xl rounded-lg">
+                            <div className="card card-compact w-full bg-[#ffffff] shadow-xl rounded-lg">
 
                                 <button className='aspect-square overflow-hidden'>
-                                    <img className='object-cover w-full h-full scale-90 hover:scale-100 duration-200 active:scale-100' src={item.images ? item.images : '/default.jpg'} alt="Shoes" />
+                                    <img className='object-cover w-full scale-90 hover:scale-100 duration-200 active:scale-100' src={item.images ? item.images : '/default.jpg'} alt="Shoes" />
                                 </button>
                                 <div className="card-body bg-dark">
                                     <h2 className="card-title">{item.name}</h2>
                                     <small>last update : <span className='text-warning'>{moment(item.updatedAt).format('DD MMMM YYYY - HH:mm')}</span></small>
                                     {/* <p className='text-sm font-thin'>{truncateDesc}</p> */}
                                     <div className="card-actions justify-end flex gap-2">
-                                        <button className='btn btn-success lg:btn-md btn-sm'>
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="lg:w-6 lg:h-6 w-4 h-4">
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m5.231 13.481L15 17.25m-4.5-15H5.625c-.621 0-1.125.504-1.125 1.125v16.5c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Zm3.75 11.625a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
-                                            </svg>
-                                        </button>
-                                        <button onClick={() => handelModalEdit(item)} className='btn btn-warning lg:btn-md btn-sm'>
+
+                                        <button onClick={() => handleNavigation(`edit/${item.id}`)} className='btn btn-warning lg:btn-md btn-sm'>
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="lg:w-6 lg:h-6 w-4 h-4">
                                                 <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
                                             </svg>
@@ -123,8 +170,8 @@ const TableClient = () => {
                     )
                 })
                     :
-                    <div className="lg:col-span-3 flex w-full justify-center min-h-[20vh]">
-                        <span className="loading loading-dots loading-lg text-red-600"></span>
+                    <div className="lg:col-span-4 col-span-2 flex w-full justify-center min-h-[20vh]">
+                        <span className="loading loading-dots loading-lg text-white"></span>
                     </div>
                 }
             </div>

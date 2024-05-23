@@ -16,7 +16,9 @@ export default function Home({ params }: { params: { id: string } }) {
             <ClientProvider >
                 <main className="">
                     <Navbar active="event" />
-                    <Section id={params.id} />
+                    <div className="mt-[20vh]">
+                        <Section id={params.id} />
+                    </div>
                     <Footer />
                 </main>
             </ClientProvider>

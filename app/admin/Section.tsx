@@ -2,26 +2,10 @@ import React from 'react'
 
 const Section = () => {
     return (
-        <div className='bg-admin min-h-screen'>
+        <div className='bg-admin min-h-[70vh]'>
             <div className="flex justify-center p-4">
-                <div className="lg:w-[70%] w-[80%] p-4 bg-[#00000078]">
-                    <div className="grid lg:grid-cols-3 gap-2">
-                        <button className='aspect-square bg-[#00000078] rounded-lg hover:bg-[#000000c5] active:scale-95 duration-200'>
-                            <div className="flex justify-center items-center text-gray-300 text-xl uppercase font-bold">
-                                Event
-                            </div>
-                        </button>
-                        <button className='aspect-square bg-[#00000078] rounded-lg hover:bg-[#000000c5] active:scale-95 duration-200'>
-                            <div className="flex justify-center items-center text-gray-300 text-xl uppercase font-bold">
-                                Social Media
-                            </div>
-                        </button>
-                        <button className='aspect-square bg-[#00000078] rounded-lg hover:bg-[#000000c5] active:scale-95 duration-200'>
-                            <div className="flex justify-center items-center text-gray-300 text-xl uppercase font-bold">
-                                Profile
-                            </div>
-                        </button>
-                    </div>
+                <div className="lg:w-[70%] w-[100%] p-4 bg-black text-white">
+                        <div className="font-bold uppercase text-2xl">WELCOME ADMIN</div>
                 </div>
             </div>
         </div>

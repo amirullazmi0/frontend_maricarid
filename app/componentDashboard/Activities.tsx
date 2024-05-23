@@ -6,7 +6,8 @@ import Link from 'next/link';
 import { eventDTO } from '@/model/event.model';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-
+import moment from 'moment';
+import 'moment/locale/id'; // Import Indonesian locale
 
 const Activities = () => {
     const [data, setData] = useState<eventDTO[]>()
@@ -39,9 +40,7 @@ const Activities = () => {
                     <div className="lg:md:text-xl">
                         Activities
                     </div>
-                    <div className="text-slate-500">
-                        Lorem ipsum dolor sit amet.
-                    </div>
+
                     <div className="flex flex-wrap justify-center lg:gap-4 gap-2 mt-4">
                         {/* <div className=" bg-[url('/container.jpg')] min-h-[50vh] bg-center bg-cover"></div> */}
                         {data && data.length > 0 ? data.map((item: eventDTO, index: number) => {
@@ -50,15 +49,16 @@ const Activities = () => {
                             if (index < 3) {
                                 return (
                                     <React.Fragment key={index}>
-                                        <div className="card grid lg:grid-cols-2 bg-dark shadow-xl overflow-hidden rounded-sm w-[45%]">
+                                        <div className="card grid grid-cols-2 bg-dark shadow-xl overflow-hidden rounded-sm lg:md:w-[45%] w-[100%]">
                                             <div className="aspect-square overflow-hidden">
                                                 <img className='object-cover h-full hover:scale-105 duration-200' src={item.images ? item.images[0] : '/default.jpg'} alt="Album" />
                                             </div>
-                                            <div className="card-body">
-                                                <h2 className="card-title text-white capitalize">{item.name}</h2>
-                                                <p className='text-slate-300 font-thin p-2 text-sm'>{truncate}</p>
+                                            <div className="lg:card-body p-3">
+                                                <h2 className="lg:card-title text-white uppercase ">{item.name}</h2>
+                                                <h2 className="text-warning font-normal text-xs">{moment(item.createdAt).format(`DD MMMM YYYY`)}</h2>
+                                                <p className='text-slate-300 font-thin p-2 lg:text-sm text-xs'>{truncate}</p>
                                                 <div className="card-actions justify-end">
-                                                    <button onClick={()=> handleNavigation(`${item.id}`)} className="btn btn-ghost text-white">Detail</button>
+                                                    <button onClick={() => handleNavigation(`${item.id}`)} className="btn btn-ghost text-white">Detail</button>
                                                 </div>
                                             </div>
                                         </div>

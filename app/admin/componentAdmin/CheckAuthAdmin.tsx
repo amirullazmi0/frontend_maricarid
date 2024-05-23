@@ -16,7 +16,7 @@ const CheckAuthAdmin = () => {
         }
         return (
             <>
-                <div className={`p-3 fixed top-0 left-0 h-screen w-screen flex items-center justify-center bg-[#000000d7] text-center z-50`}>
+                <div className={`p-3 fixed top-0 left-0 h-screen w-screen flex items-center justify-center bg-[#000000] text-center z-50`}>
                     <div className="">
                         <div className="uppercase text-white font-bold text-3xl">
                             SESSION TIMEOUT

@@ -4,7 +4,7 @@ import Section from "./Section";
 import Navbar from "./componentAdmin/Navbar";
 import AuthProvider from "./AuthContext";
 import CheckAuthAdmin from "./componentAdmin/CheckAuthAdmin";
-
+import Footer from "./componentAdmin/Footer";
 
 export default function Home() {
     return (
@@ -12,7 +12,10 @@ export default function Home() {
             <CheckAuthAdmin />
             <main className="">
                 <Navbar active="dashboard" />
-                <Section />
+                <div className="mt-[20vh]">
+                    <Section />
+                </div>
+                <Footer />
             </main>
         </AuthProvider>
     );

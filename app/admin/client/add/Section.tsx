@@ -1,13 +1,14 @@
 'use client'
 import React, { useContext, useEffect, useState } from 'react'
 import { ClientContext } from '../ClientContext'
-import { eventDTO } from '@/model/event.model'
+import { clientDTO } from '@/model/client.model'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
-
+import Image from 'next/image'
+import successIcon from "../../../../public/icon/Success.gif";
 const Section = () => {
 
-    const EventState: any = useContext(ClientContext)
+    const clientState = useContext(ClientContext)
     const navigation = useRouter()
     const [Modal, setModal] = useState<boolean>(false)
 
@@ -17,8 +18,10 @@ const Section = () => {
     const [require, setRequire] = useState<boolean>(false)
     const [previewUrl, setPreviewUrl] = useState<any>(null);
 
-    const handleFileChange = (event: any) => {
-        const file = event.target.files[0]
+    const API_URL = process.env.API_URL
+
+    const handleFileChange = (client: any) => {
+        const file = client.target.files[0]
         if (file) {
             setImages(file);
             const reader = new FileReader();
@@ -29,37 +32,32 @@ const Section = () => {
         }
     };
 
-    const handleAddEvent = async () => {
-        if (name && desc) {
+    const handleAddclient = async () => {
+        if (name) {
             try {
-                const API_URL = process.env.API_URL
                 const formData = new FormData
                 formData.append('name', name)
-                formData.append('desc', desc)
+                formData.append('desc', desc ? desc : '')
                 formData.append('images', images)
-                const data: eventDTO = {
-                    name: name,
-                    desc: desc,
-                    images: images
-                }
+
 
                 const access_token = sessionStorage.getItem('access_token')
 
-                const response = await axios.post(`${API_URL}/api/event`, formData, {
+                const response = await axios.post(`${API_URL}/api/client`, formData, {
                     headers: {
                         Authorization: `Bearer ${access_token}`,
                     }
                 })
 
                 if (response.data.success == true) {
-                    EventState.setAddStatus(true)
+                    clientState.setAddStatus(true)
                     setName('')
                     setDesc('')
                     setImages('')
                     setModal(false)
                     setTimeout(() => {
-                        navigation.push(`/admin/event`)
-                        EventState.setAddStatus(false)
+                        navigation.push(`/admin/client`)
+                        clientState.setAddStatus(false)
                     }, 5000)
                 }
             } catch (error) {
@@ -78,20 +76,56 @@ const Section = () => {
             }, 10000)
         }
     }
+
+    const renderAlertSuccess = () => {
+        if (clientState.addStatus === true) {
+            return (
+                <React.Fragment>
+                    <div className="fixed w-screen h-screen top-0 left-0 bg-[#000000c9] flex justify-center items-center">
+                        <div className=" p-4 text-center min-h-[30%] lg:w-[40%] flex justify-center items-center">
+                            <div className="">
+                                <div className="flex justify-center">
+                                    <Image alt='' src={successIcon} className='h-32 w-fit' />
+                                </div>
+
+                                <div className="w-full text-center font-bold uppercase text-xl text-white">
+                                    <div className="">
+                                        Add Data Successfully
+                                    </div>
+                                    <div className="mt-3">
+                                        <span className="loading loading-dots loading-md"></span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            {/* <div className="">
+                                <div className="">
+                                    Add Client Successfully
+                                </div>
+                                <div className="">redirect to table event</div>
+                            </div> */}
+                        </div>
+                    </div>
+                </React.Fragment>
+            )
+        }
+    }
+
     return (
-        <div className='bg-admin'>
+        <div className='bg-admin min-h-[70vh]'>
             <div className="flex justify-center p-4">
-                <div className="lg:w-[50%] w-[100%] p-4 bg-black">
-                    {EventState.addStatus == true &&
+                <div className="lg:w-[60%] w-[100%] p-4 bg-black">
+                    {renderAlertSuccess()}
+                    {/* {clientState.addStatus == true &&
                         <React.Fragment>
                             <div className="p-2 bg-lime-500 uppercase font-bold mb-2 flex items-center justify-between rounded-sm">
-                                Add Event Successfully
+                                Add client Successfully
                                 <div className=""><span className="loading loading-dots loading-sm"></span></div>
                             </div>
                         </React.Fragment>
-                    }
+                    } */}
                     <div className=" text-xl uppercase text-white font-bold bg-red-600 p-2 rounded-sm w-fit">
-                        Form Add Event
+                        Form Add client
                     </div>
                     <div className="grid gap-2 mt-3">
                         <div className=" grid gap-2">
@@ -107,21 +141,21 @@ const Section = () => {
                                 </div>
                             }
                             <div className="">
-                                <div className="text-white mb-1">Event Name</div>
-                                <input value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder="event name" className="input input-bordered rounded-sm w-full" />
+                                <div className="text-white mb-1">client Name</div>
+                                <input value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder="client name" className="input input-bordered rounded-sm w-full" />
                             </div>
+                            {/* <div className="">
+                                <div className="text-white mb-1">client Description</div>
+                                <textarea value={desc} onChange={(e) => setDesc(e.target.value)} className="textarea textarea-bordered w-full rounded-sm" placeholder="client description" rows={5}></textarea>
+                            </div> */}
                             <div className="">
-                                <div className="text-white mb-1">Event Description</div>
-                                <textarea value={desc} onChange={(e) => setDesc(e.target.value)} className="textarea textarea-bordered w-full rounded-sm" placeholder="event description" rows={5}></textarea>
-                            </div>
-                            <div className="">
-                                <div className="text-white mb-1">Event Image</div>
+                                <div className="text-white mb-1">client Image</div>
                                 <input accept="image/*" onChange={handleFileChange} type="file" className="file-input border-none rounded-sm w-full" />
                             </div>
-                            <div className="aspect-square lg:w-[20%] w-[35%]">
-                                <img src={previewUrl ? previewUrl : '/default.jpg'} alt="Image Preview" className='object-cover h-full w-full' />
+                            <div className="aspect-square lg:w-[20%] w-[35%] bg-white flex items-center">
+                                <img src={previewUrl ? previewUrl : '/default.jpg'} alt="Image Preview" className='object-cover h-fit w-full' />
                             </div>
-                            <button onClick={handleAddEvent} className=" btn btn-success uppercase rounded-sm">Save</button>
+                            <button onClick={handleAddclient} className=" btn btn-success uppercase rounded-sm">Save</button>
                         </div>
                     </div>
                 </div>

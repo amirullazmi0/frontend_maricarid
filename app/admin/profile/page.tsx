@@ -12,7 +12,9 @@ export default function Home() {
             <CheckAuthAdmin />
             <main className="">
                 <Navbar active="profile" />
-                <Section />
+                <div className="mt-[20vh]">
+                    <Section />
+                </div>
             </main>
         </AuthProvider>
     );

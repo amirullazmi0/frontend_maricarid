@@ -6,12 +6,16 @@ import moment from 'moment';
 import 'moment/locale/id'; // Import Indonesian locale
 import { EventContext } from './EventContext';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image'
+import successIcon from "../../../public/icon/Success.gif";
 
 const TableEvent = () => {
     moment.locale('id');
-    const eventState: any = useContext(EventContext)
+    const eventState = useContext(EventContext)
     const [dataEvent, setDataEvent] = useState<eventDTO[]>()
     const [AlertDelete, setAlertDelete] = useState<boolean>(false)
+    const [deleteStatus, setDeleteStatus] = useState<boolean>(false)
+    const [deleteSelect, setDeleteSelect] = useState<eventDTO | null>(null)
 
     const navigation = useRouter()
 
@@ -23,7 +27,33 @@ const TableEvent = () => {
 
             if (response.data.success === true) {
                 setDataEvent(response.data.data)
-                console.log(response.data.data);
+            }
+        } catch (error) {
+
+        }
+    }
+
+    const API_URL = process.env.API_URL
+    const TOKEN = sessionStorage.getItem('access_token')
+
+    const handleDelete = async () => {
+        try {
+            const response = await axios.delete(`${API_URL}/api/event/`, {
+                data: {
+                    id: deleteSelect ? deleteSelect.id : ''
+                },
+                headers: {
+                    Authorization: `Bearer ${TOKEN}`
+                }
+            })
+
+            if (response.data) {
+                setDeleteStatus(true)
+                setTimeout(() => {
+                    setDeleteSelect(null)
+                    setDeleteStatus(false)
+                    setAlertDelete(false)
+                }, 5000)
             }
         } catch (error) {
 
@@ -31,8 +61,7 @@ const TableEvent = () => {
     }
 
     const renderAlertDelete = () => {
-        if (AlertDelete == true) {
-            window.document.body.style.overflow = 'hidden'
+        if (AlertDelete == true && deleteStatus == false) {
             return (
                 <div className="fixed w-screen min-h-screen bg-[#000000d8] top-0 left-0 flex items-center justify-center z-50">
                     <button onClick={() => handleCloseAlertDelete()} className="btn btn-ghost fixed top-0 right-0 m-4 btn-circle">
@@ -48,31 +77,51 @@ const TableEvent = () => {
                                 </div>
                                 <div className="flex justify-end mt-4 gap-2">
                                     <button onClick={() => handleCloseAlertDelete()} className='btn btn-info uppercase text-white'>Cancel</button>
-                                    <button onClick={handleDelete} className='btn border-none bg-red-600 hover:bg-red-700 uppercase text-white'>Sure</button>
+                                    <button onClick={() => handleDelete()} className='btn border-none bg-red-600 hover:bg-red-700 uppercase text-white'>Sure</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             )
-        } else {
-            window.document.body.style.overflow = 'auto'
+        }
+
+        if (AlertDelete == true && deleteStatus == true) {
+            return (
+                <React.Fragment>
+                    <div className="fixed w-screen h-screen top-0 left-0 bg-[#000000c9] flex justify-center items-center z-50">
+                        <div className=" p-4 text-center min-h-[30%] lg:w-[40%] flex justify-center items-center">
+                            <div className="">
+                                <div className="flex justify-center">
+                                    <Image alt='' src={successIcon} className='h-32 w-fit' />
+                                </div>
+
+                                <div className="w-full text-center font-bold uppercase text-xl text-white">
+                                    <div className="">
+                                        Delete Data Successfully
+                                    </div>
+                                    <div className="mt-3">
+                                        <span className="loading loading-dots loading-md"></span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </React.Fragment>
+            )
         }
     }
 
+    const handleCloseAlertDelete = () => {
+        setDeleteSelect(null)
+        setAlertDelete(false)
+    }
     const handelAlertDelete = (item: eventDTO) => {
+        setDeleteSelect(item)
         setAlertDelete(true)
-        eventState.setDeleteSelect(item)
     }
 
-    const handleCloseAlertDelete = () => {
-        setAlertDelete(false)
-        eventState.setDeleteSelect(undefined)
-    }
-    const handleDelete = () => {
-        eventState.handleDeleteEvent()
-        setAlertDelete(false)
-    }
 
     const handleNavigation = (e: string) => {
         navigation.push(`/admin/event/${e}`)
@@ -80,11 +129,11 @@ const TableEvent = () => {
 
     useEffect(() => {
         getData()
-    }, [eventState.addStatus, eventState.deleteStatus, eventState.editStatus])
+    }, [deleteStatus])
     return (
         <div className='text-white mt-4'>
             {renderAlertDelete()}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 z-10">
                 {dataEvent && dataEvent.length > 0 ? dataEvent.map((item: eventDTO, index: number) => {
                     const originalDesc = item.desc
                     const truncateDesc: any = originalDesc?.substring(0, 50) + '...'
@@ -123,8 +172,8 @@ const TableEvent = () => {
                     )
                 })
                     :
-                    <div className="lg:col-span-3 flex w-full justify-center min-h-[20vh]">
-                        <span className="loading loading-dots loading-lg text-red-600"></span>
+                    <div className="lg:col-span-4 col-span-2 flex w-full justify-center min-h-[20vh]">
+                        <span className="loading loading-dots loading-lg text-white"></span>
                     </div>
                 }
             </div>

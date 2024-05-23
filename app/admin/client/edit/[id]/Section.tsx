@@ -4,12 +4,12 @@ import { ClientContext } from '../../ClientContext'
 import { eventDTO } from '@/model/event.model'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
+import successIcon from "../../../../../public/icon/Success.gif";
 
 const Section = ({ id }: { id: string }) => {
-
-    const EventState: any = useContext(ClientContext)
+    const clientState = useContext(ClientContext)
     const navigation = useRouter()
-    const [Modal, setModal] = useState<boolean>(false)
 
     const [name, setName] = useState<string | undefined>('')
     const [desc, setDesc] = useState<string | undefined>('')
@@ -30,9 +30,9 @@ const Section = ({ id }: { id: string }) => {
     };
     const API_URL = process.env.API_URL
 
-    const getEvent = async () => {
+    const getClient = async () => {
         try {
-            const response = await axios.get(`${API_URL}/api/event?id=${id}`)
+            const response = await axios.get(`${API_URL}/api/client?id=${id}`)
 
             if (response.data.data) {
                 setName(response.data.data.name)
@@ -45,36 +45,63 @@ const Section = ({ id }: { id: string }) => {
         }
     }
 
-    const handleAddEvent = async () => {
-        if (name && desc) {
+    const renderAlertSuccess = () => {
+        if (clientState.addStatus === true) {
+            return (
+                <React.Fragment>
+                    <div className="fixed w-screen h-screen top-0 left-0 bg-[#000000c9] flex justify-center items-center">
+                        <div className=" p-4 text-center min-h-[30%] lg:w-[40%] flex justify-center items-center">
+                            <div className="">
+                                <div className="flex justify-center">
+                                    <Image alt='' src={successIcon} className='h-32 w-fit' />
+                                </div>
+
+                                <div className="w-full text-center font-bold uppercase text-xl text-white">
+                                    <div className="">
+                                        Update Data Successfully
+                                    </div>
+                                    <div className="mt-3">
+                                        <span className="loading loading-dots loading-md"></span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            {/* <div className="">
+                                <div className="">
+                                    Add Client Successfully
+                                </div>
+                                <div className="">redirect to table event</div>
+                            </div> */}
+                        </div>
+                    </div>
+                </React.Fragment>
+            )
+        }
+    }
+
+    const handleEditClient = async () => {
+        if (name) {
             try {
                 const formData = new FormData
                 formData.append('name', name)
-                formData.append('desc', desc)
                 formData.append('images', images)
-                const data: eventDTO = {
-                    name: name,
-                    desc: desc,
-                    images: images
-                }
 
                 const access_token = sessionStorage.getItem('access_token')
 
-                const response = await axios.put(`${API_URL}/api/event/${id}`, formData, {
+                const response = await axios.put(`${API_URL}/api/client/${id}`, formData, {
                     headers: {
                         Authorization: `Bearer ${access_token}`,
                     }
                 })
 
                 if (response.data.success == true) {
-                    EventState.setAddStatus(true)
-                    setName('')
-                    setDesc('')
-                    setImages('')
-                    setModal(false)
+                    clientState.setAddStatus(true)
+                    // setName('')
+                    // setDesc('')
+                    // setImages('')
                     setTimeout(() => {
-                        navigation.push(`/admin/event`)
-                        EventState.setAddStatus(false)
+                        navigation.push(`/admin/client`)
+                        clientState.setAddStatus(false)
                     }, 3000)
                 }
             } catch (error) {
@@ -95,20 +122,13 @@ const Section = ({ id }: { id: string }) => {
     }
 
     useEffect(() => {
-        getEvent()
+        getClient()
     }, [])
     return (
         <div className='bg-admin'>
             <div className="flex justify-center p-4">
                 <div className="lg:w-[50%] w-[100%] p-4 bg-black">
-                    {EventState.addStatus == true &&
-                        <React.Fragment>
-                            <div className="p-2 bg-lime-500 uppercase font-bold mb-2 flex items-center justify-between rounded-sm">
-                                Update Event Successfully
-                                <div className=""><span className="loading loading-dots loading-sm"></span></div>
-                            </div>
-                        </React.Fragment>
-                    }
+                    {renderAlertSuccess()}
                     <div className=" text-xl uppercase text-white font-bold bg-red-600 p-2 rounded-sm w-fit">
                         Form Edit Event
                     </div>
@@ -129,18 +149,18 @@ const Section = ({ id }: { id: string }) => {
                                 <div className="text-white mb-1">Event Name</div>
                                 <input value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder="event name" className="input input-bordered rounded-sm w-full" />
                             </div>
-                            <div className="">
+                            {/* <div className="">
                                 <div className="text-white mb-1">Event Description</div>
                                 <textarea value={desc} onChange={(e) => setDesc(e.target.value)} className="textarea textarea-bordered w-full rounded-sm" placeholder="event description" rows={5}></textarea>
-                            </div>
+                            </div> */}
                             <div className="">
                                 <div className="text-white mb-1">Event Image</div>
                                 <input accept="image/*" onChange={handleFileChange} type="file" className="file-input border-none rounded-sm w-full" />
                             </div>
-                            <div className="aspect-square lg:w-[20%] w-[35%]">
+                            <div className="aspect-square lg:w-[20%] w-[35%] bg-white">
                                 <img src={previewUrl ? previewUrl : '/default.jpg'} alt="Image Preview" className='object-cover h-full w-full' />
                             </div>
-                            <button onClick={handleAddEvent} className=" btn btn-success uppercase rounded-sm">update</button>
+                            <button onClick={handleEditClient} className=" btn btn-success uppercase rounded-sm">update</button>
                         </div>
                     </div>
                 </div>

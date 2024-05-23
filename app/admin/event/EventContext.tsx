@@ -2,9 +2,43 @@
 
 import { eventDTO } from '@/model/event.model'
 import axios from 'axios'
-import { createContext, useState } from 'react'
+import { createContext, Dispatch, SetStateAction, useState } from 'react'
 
-export const EventContext = createContext({})
+interface BaseContextType {
+    addStatus: boolean;
+    setAddStatus: Dispatch<SetStateAction<boolean>>;
+    errorStatus: boolean;
+    setErrorStatus: Dispatch<SetStateAction<boolean>>;
+    deleteSelect: eventDTO | undefined;
+    setDeleteSelect: Dispatch<SetStateAction<eventDTO | undefined>>;
+    deleteStatus: boolean;
+    setDeleteStatus: Dispatch<SetStateAction<boolean>>;
+    modalEdit: boolean;
+    setModalEdit: Dispatch<SetStateAction<boolean>>;
+    editSelect: eventDTO | undefined;
+    setEditSelect: Dispatch<SetStateAction<eventDTO | undefined>>;
+    editStatus: boolean;
+    setEditStatus: Dispatch<SetStateAction<boolean>>;
+    handleDeleteEvent: () => Promise<void>; // Updated type
+}
+export const EventContext = createContext<BaseContextType>({
+    addStatus: false,
+    setAddStatus: () => { },
+    errorStatus: false,
+    setErrorStatus: () => { },
+    deleteSelect: undefined,
+    setDeleteSelect: () => { },
+    deleteStatus: false,
+    setDeleteStatus: () => { },
+    modalEdit: false,
+    setModalEdit: () => { },
+    editSelect: undefined,
+    setEditSelect: () => { },
+    editStatus: false,
+    setEditStatus: () => { },
+    handleDeleteEvent: async () => { } // Empty function as placeholder
+})
+
 
 export default function EventProvider({ children }: { children: React.ReactNode }) {
     const [addStatus, setAddStatus] = useState<boolean>(false)

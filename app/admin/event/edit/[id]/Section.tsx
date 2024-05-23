@@ -4,10 +4,11 @@ import EventProvider, { EventContext } from '../../EventContext'
 import { eventDTO } from '@/model/event.model'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
+import successIcon from "../../../../../public/icon/Success.gif";
 
 const Section = ({ id }: { id: string }) => {
-
-    const EventState: any = useContext(EventContext)
+    const EventState = useContext(EventContext)
     const navigation = useRouter()
     const [Modal, setModal] = useState<boolean>(false)
 
@@ -45,6 +46,40 @@ const Section = ({ id }: { id: string }) => {
         }
     }
 
+    const renderAlertSuccess = () => {
+        if (EventState.addStatus === true) {
+            return (
+                <React.Fragment>
+                    <div className="fixed w-screen h-screen top-0 left-0 bg-[#000000c9] flex justify-center items-center">
+                        <div className=" p-4 text-center min-h-[30%] lg:w-[40%] flex justify-center items-center">
+                            <div className="">
+                                <div className="flex justify-center">
+                                    <Image alt='' src={successIcon} className='h-32 w-fit' />
+                                </div>
+
+                                <div className="w-full text-center font-bold uppercase text-xl text-white">
+                                    <div className="">
+                                        Update Data Successfully
+                                    </div>
+                                    <div className="mt-3">
+                                        <span className="loading loading-dots loading-md"></span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            {/* <div className="">
+                                <div className="">
+                                    Add Client Successfully
+                                </div>
+                                <div className="">redirect to table event</div>
+                            </div> */}
+                        </div>
+                    </div>
+                </React.Fragment>
+            )
+        }
+    }
+
     const handleAddEvent = async () => {
         if (name && desc) {
             try {
@@ -52,11 +87,6 @@ const Section = ({ id }: { id: string }) => {
                 formData.append('name', name)
                 formData.append('desc', desc)
                 formData.append('images', images)
-                const data: eventDTO = {
-                    name: name,
-                    desc: desc,
-                    images: images
-                }
 
                 const access_token = sessionStorage.getItem('access_token')
 
@@ -68,9 +98,9 @@ const Section = ({ id }: { id: string }) => {
 
                 if (response.data.success == true) {
                     EventState.setAddStatus(true)
-                    setName('')
-                    setDesc('')
-                    setImages('')
+                    // setName('')
+                    // setDesc('')
+                    // setImages('')
                     setModal(false)
                     setTimeout(() => {
                         navigation.push(`/admin/event`)
@@ -101,14 +131,7 @@ const Section = ({ id }: { id: string }) => {
         <div className='bg-admin'>
             <div className="flex justify-center p-4">
                 <div className="lg:w-[50%] w-[100%] p-4 bg-black">
-                    {EventState.addStatus == true &&
-                        <React.Fragment>
-                            <div className="p-2 bg-lime-500 uppercase font-bold mb-2 flex items-center justify-between rounded-sm">
-                                Update Event Successfully
-                                <div className=""><span className="loading loading-dots loading-sm"></span></div>
-                            </div>
-                        </React.Fragment>
-                    }
+                    {renderAlertSuccess()}
                     <div className=" text-xl uppercase text-white font-bold bg-red-600 p-2 rounded-sm w-fit">
                         Form Edit Event
                     </div>

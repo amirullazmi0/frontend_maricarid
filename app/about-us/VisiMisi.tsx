@@ -1,16 +1,56 @@
-import React from 'react'
+'use client'
+import { profileDTO } from '@/model/profile.model'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 
 const VisiMisi = () => {
+    const [visi, setVisi] = useState<profileDTO>()
+    const [misi, setMisi] = useState<profileDTO>()
+
+    const API_URL = process.env.API_URL
+
+    const getVisi = async () => {
+        const response = await axios.get(`${API_URL}/api/profile?name=visi`)
+
+        if (response.data.data) {
+            setVisi(response.data.data)
+        }
+    }
+
+    const getMisi = async () => {
+        const response = await axios.get(`${API_URL}/api/profile?name=misi`)
+
+        if (response.data.data) {
+            setMisi(response.data.data)
+        }
+    }
+
+    useEffect(() => {
+        getVisi()
+        getMisi()
+    }, [])
+
     return (
-        <div className="relative overflow-hidden bg-sky-700" >
-            <div className=" h-full w-full p-4 flex justify-center">
-                <div className="pt-10 pb-10 h-max flex justify-center items-center">
-                    <div className="lg:w-[60%] h-full">
-                        <div className="font-bold text-2xl text-center text-white">VISION</div>
-                        <div className="text-lg text-center mt-2 text-slate-300">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti provident soluta commodi minus, labore totam aliquid, deleniti laudantium modi dolorum molestiae aut autem cumque tenetur quaerat dicta aspernatur ad maiores laboriosam facere sunt debitis architecto? Deserunt nostrum sunt perferendis optio.</div>
+        <div className=" bg-sky-700" >
+            <div className="h-full w-full p-4 flex justify-center">
+                <div className="pt-10 pb-10 h-max flex justify-center items-center w-full">
+                    <div className="lg:w-[60%] h-full grid">
+                        <div className="font-bold text-2xl text-center text-white ">VISION</div>
+                        {visi ? <div className="text-lg text-center mt-2 text-slate-300">{visi.desc}</div>
+                            :
+                            <div className="min-h-[10vh] flex justify-center items-center w-full text-center">
+                                <span className="loading loading-dots loading-lg text-white"></span>
+                            </div>
+
+                        }
                         {/* misi */}
                         <div className="font-bold text-2xl text-center mt-4 text-white">MISSION</div>
-                        <div className="text-lg text-center mt-2 text-slate-300">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem, voluptas ducimus. Optio nam doloremque, molestiae repellat fuga distinctio iure ducimus veritatis amet perspiciatis similique sunt dicta modi exercitationem, in quod.</div>
+                        {misi ? <div className="text-lg text-center mt-2 text-slate-300">{misi.desc}</div>
+                            :
+                            <div className="min-h-[10vh] flex justify-center items-center w-full text-center">
+                                <span className="loading loading-dots loading-lg text-white"></span>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>

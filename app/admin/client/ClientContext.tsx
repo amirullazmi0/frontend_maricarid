@@ -1,7 +1,7 @@
 'use client'
 import { clientDTO } from '@/model/client.model';
 import axios from 'axios';
-import { createContext, useState, Dispatch, SetStateAction, ReactNode } from 'react';
+import { createContext, useState, Dispatch, SetStateAction, ReactNode, useEffect } from 'react';
 
 interface BaseContextType {
     addStatus: boolean;
@@ -18,7 +18,7 @@ interface BaseContextType {
     setEditSelect: Dispatch<SetStateAction<clientDTO | undefined>>;
     editStatus: boolean;
     setEditStatus: Dispatch<SetStateAction<boolean>>;
-    handleDeleteClient: (selectedEvent: clientDTO | undefined) => Promise<void>; // Updated type
+    handleDeleteClient: () => Promise<void>; // Updated type
 }
 
 export const ClientContext = createContext<BaseContextType>({
@@ -50,25 +50,25 @@ export default function ClientProvider({ children }: { children: ReactNode }) {
     const [editSelect, setEditSelect] = useState<clientDTO | undefined>(undefined);
     const [editStatus, setEditStatus] = useState<boolean>(false);
 
-    const handleDeleteClient = async (item: clientDTO | undefined) => { // Updated function signature
-        if (item) {
+    const handleDeleteClient = async () => { // Updated function signature
+        if (deleteSelect) {
             try {
                 const API_URL = process.env.API_URL;
                 const access_token = sessionStorage.getItem('access_token');
                 const response = await axios.delete(`${API_URL}/api/client`, {
                     data: {
-                        id: item.id
+                        id: deleteSelect.id
                     },
                     headers: {
                         Authorization: `Bearer ${access_token}`
                     }
                 });
                 if (response.data.success == true) {
-                    setDeleteStatus(true);
-                    setDeleteSelect(undefined);
+                    setDeleteStatus(true)
+                    setDeleteSelect(undefined)
                     setTimeout(() => {
                         setDeleteStatus(false);
-                    }, 10000);
+                    }, 5000);
                 }
             } catch (error) {
                 // Handle error

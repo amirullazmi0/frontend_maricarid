@@ -15,7 +15,9 @@ export default function Home() {
             <EventProvider >
                 <main className="">
                     <Navbar active="event" />
-                    <Section />
+                    <div className="mt-[20vh]">
+                        <Section />
+                    </div>
                     <Footer />
                 </main>
             </EventProvider>

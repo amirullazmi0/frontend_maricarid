@@ -2,7 +2,8 @@
 import { eventDTO } from '@/model/event.model'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-
+import moment from 'moment';
+import 'moment/locale/id'; // Import Indonesian locale
 const Section = ({ id }: { id: string }) => {
     const [data, setData] = useState<eventDTO>()
     const API_URL = process.env.API_URL
@@ -28,13 +29,14 @@ const Section = ({ id }: { id: string }) => {
             <div className="lg:w-[80%] p-2">
                 {data ?
                     <React.Fragment>
-                        <div className="grid lg:grid-cols-2 gap-2">
+                        <div className="grid lg:grid-cols-2">
                             <div className="aspect-square">
                                 <img className='h-full object-cover' src={data.images ? data.images : '/default.jpg'} alt="" />
                             </div>
-                            <div className="">
+                            <div className=" p-4 bg-dark text-white">
                                 <div className="text-2xl font-bold uppercase">{data.name}</div>
-                                <div className="p-3 text-lg">{data.desc}</div>
+                                <div className="text-sm text-warning">{moment(data.createdAt).format('DD MMMM YYYY')}</div>
+                                <div className="p-3 text-lg text-slate-400">{data.desc}</div>
                             </div>
                         </div>
                     </React.Fragment>

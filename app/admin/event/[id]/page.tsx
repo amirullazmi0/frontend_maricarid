@@ -1,7 +1,6 @@
 'use client'
 import Image from "next/image";
 import React from "react";
-
 import Navbar from "../../componentAdmin/Navbar";
 import EventProvider from "../EventContext";
 import AuthProvider from "../../AuthContext";
@@ -17,7 +16,9 @@ export default function Home({ params }: { params: { id: string } }) {
             <EventProvider >
                 <main className="">
                     <Navbar active="event" />
-                    <Section id={params.id} />
+                    <div className="mt-[20vh]">
+                        <Section id={params.id} />
+                    </div>
                     <Footer />
                 </main>
             </EventProvider>
