@@ -2,6 +2,7 @@
 import { socmedDTO } from '@/model/socmed.model'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import Cookies from 'js-cookie'
 
 const FormInstagram = () => {
     const [data, setData] = useState<socmedDTO>({
@@ -10,7 +11,7 @@ const FormInstagram = () => {
     })
 
     const API_URL = process.env.API_URL
-    const [access_token, setAccessToken] = useState<string | null>()
+    const access_token = Cookies.get('access_token')
     const [alertSucess, setAlertSuccess] = useState<boolean | undefined>(undefined)
 
     const handleUpdate = async () => {
@@ -48,10 +49,6 @@ const FormInstagram = () => {
 
     useEffect(() => {
         getData()
-        if (typeof window !== 'undefined') {
-            const token = sessionStorage.getItem('access_token');
-            setAccessToken(token);
-        }
     }, [])
 
     return (

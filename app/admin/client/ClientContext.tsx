@@ -2,6 +2,7 @@
 import { clientDTO } from '@/model/client.model';
 import axios from 'axios';
 import { createContext, useState, Dispatch, SetStateAction, ReactNode, useEffect } from 'react';
+import Cookies from 'js-cookie'
 
 interface BaseContextType {
     addStatus: boolean;
@@ -49,7 +50,7 @@ export default function ClientProvider({ children }: { children: ReactNode }) {
     const [modalEdit, setModalEdit] = useState<boolean>(false);
     const [editSelect, setEditSelect] = useState<clientDTO | undefined>(undefined);
     const [editStatus, setEditStatus] = useState<boolean>(false);
-    const [access_token, setAccessToken] = useState<string | null>()
+    const access_token = Cookies.get('access_token')
 
     const handleDeleteClient = async () => { // Updated function signature
         if (deleteSelect) {
@@ -75,13 +76,6 @@ export default function ClientProvider({ children }: { children: ReactNode }) {
             }
         }
     };
-
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
-            const token = sessionStorage.getItem('access_token');
-            setAccessToken(token);
-        }
-    }, [])
 
     return (
         <ClientContext.Provider

@@ -8,7 +8,7 @@ import { EventContext } from './EventContext';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image'
 import successIcon from "../../../public/icon/Success.gif";
-
+import Cookies from 'js-cookie'
 const TableEvent = () => {
     moment.locale('id');
     const eventState = useContext(EventContext)
@@ -33,7 +33,7 @@ const TableEvent = () => {
         }
     }
 
-    const [access_token, setAccessToken] = useState<string | null>()
+    const access_token = Cookies.get('access_token')
 
     const handleDelete = async () => {
         try {
@@ -128,10 +128,7 @@ const TableEvent = () => {
 
     useEffect(() => {
         getData()
-        if (typeof window !== 'undefined') {
-            const token = sessionStorage.getItem('access_token');
-            setAccessToken(token);
-        }
+
     }, [deleteStatus])
     return (
         <div className='text-white mt-4'>

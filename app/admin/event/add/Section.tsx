@@ -6,20 +6,18 @@ import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import successIcon from "../../../../public/icon/Success.gif";
+import Cookies from 'js-cookie'
 
 const Section = () => {
-
     const EventState: any = useContext(EventContext)
     const navigation = useRouter()
-    const [Modal, setModal] = useState<boolean>(false)
-
     const [name, setName] = useState<string | undefined>('')
     const [desc, setDesc] = useState<string | undefined>('')
     const [images, setImages] = useState<any | undefined>('')
     const [require, setRequire] = useState<boolean>(false)
     const [previewUrl, setPreviewUrl] = useState<any>(null);
 
-    const [access_token, setAccessToken] = useState<string | null>()
+    const access_token = Cookies.get('access_token')
     const API_URL = process.env.API_URL
 
     const handleFileChange = (event: any) => {
@@ -55,12 +53,6 @@ const Section = () => {
                                 </div>
 
                             </div>
-                            {/* <div className="">
-                                <div className="">
-                                    Add Client Successfully
-                                </div>
-                                <div className="">redirect to table event</div>
-                            </div> */}
                         </div>
                     </div>
                 </React.Fragment>
@@ -75,11 +67,6 @@ const Section = () => {
                 formData.append('name', name)
                 formData.append('desc', desc)
                 formData.append('images', images)
-                const data: eventDTO = {
-                    name: name,
-                    desc: desc,
-                    images: images
-                }
 
                 const response = await axios.post(`${API_URL}/api/event`, formData, {
                     headers: {
@@ -92,7 +79,6 @@ const Section = () => {
                     setName('')
                     setDesc('')
                     setImages('')
-                    setModal(false)
                     setTimeout(() => {
                         navigation.push(`/admin/event`)
                         EventState.setAddStatus(false)
@@ -115,12 +101,6 @@ const Section = () => {
         }
     }
 
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
-            const token = sessionStorage.getItem('access_token');
-            setAccessToken(token);
-        }
-    }, [])
 
     return (
         <div className='bg-admin'>

@@ -1,12 +1,10 @@
 'use client'
-import { profileDTO } from '@/model/profile.model'
 import axios from 'axios'
-import { headers } from 'next/headers'
 import React, { useEffect, useState } from 'react'
-
+import Cookies from 'js-cookie'
 const FormAboutUs = () => {
     const API_URL = process.env.API_URL
-    const [access_token, setAccessToken] = useState<string | null>()
+    const access_token = Cookies.get('access_token')
     const [AlertSuccessVisiMisi, setAlertSuccessVisiMisi] = useState<boolean>(false)
     const [data, setData] = useState<string>()
 
@@ -43,13 +41,8 @@ const FormAboutUs = () => {
         }
     }
 
-
     useEffect(() => {
         getData()
-        if (typeof window !== 'undefined') {
-            const token = sessionStorage.getItem('access_token');
-            setAccessToken(token);
-        }
     }, [])
 
     return (

@@ -2,17 +2,17 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../AuthContext'
 import axios from 'axios'
+import Cookies from 'js-cookie'
 
 const FormUsername = () => {
     const [fullName, setfullName] = useState<string>('')
     const [Email, setEmail] = useState<string>('')
     const [alertSuccess, setAlertSuccess] = useState<boolean>(false)
-    const [access_token, setAccessToken] = useState<string | null>()
+    const access_token = Cookies.get('access_token')
     const Auth: any = useContext(AuthContext)
 
 
     const API_URL = process.env.API_URL
-    // const access_token = sessionStorage.getItem('access_token')
 
     const handleUpdateUser = async () => {
         try {
@@ -44,12 +44,6 @@ const FormUsername = () => {
             setfullName(Auth.currentUser.fullName)
             setEmail(Auth.currentUser.email)
         }
-
-        if (typeof window !== 'undefined') {
-            const token = sessionStorage.getItem('access_token');
-            setAccessToken(token);
-        }
-
     }, [Auth.currentUser])
     return (
         <div>

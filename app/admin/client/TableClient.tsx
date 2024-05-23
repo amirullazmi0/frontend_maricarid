@@ -8,6 +8,7 @@ import 'moment/locale/id'; // Import Indonesian locale
 import Image from 'next/image'
 import successIcon from "../../../public/icon/Success.gif";
 import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie'
 moment.locale('id');
 
 
@@ -18,7 +19,7 @@ const TableClient = () => {
     const [deleteStatus, setDeleteStatus] = useState<boolean>(false)
     const [deleteSelect, setDeleteSelect] = useState<clientDTO | null>(null)
     const API_URL = process.env.API_URL
-    const [access_token, setAccessToken] = useState<string | null>()
+    const access_token = Cookies.get('access_token')
 
     const navigation = useRouter()
 
@@ -128,10 +129,7 @@ const TableClient = () => {
 
     useEffect(() => {
         getData()
-        if (typeof window !== 'undefined') {
-            const token = sessionStorage.getItem('access_token');
-            setAccessToken(token);
-        }
+
     }, [deleteStatus])
     return (
         <div className='text-white mt-4'>

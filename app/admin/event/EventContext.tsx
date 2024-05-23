@@ -1,8 +1,8 @@
 'use client'
-
 import { eventDTO } from '@/model/event.model'
 import axios from 'axios'
 import { createContext, Dispatch, SetStateAction, useEffect, useState } from 'react'
+import Cookies from 'js-cookie'
 
 interface BaseContextType {
     addStatus: boolean;
@@ -52,7 +52,7 @@ export default function EventProvider({ children }: { children: React.ReactNode 
     const [editStatus, setEditStatus] = useState<boolean>(false)
 
     const API_URL = process.env.API_URL
-    const [access_token, setAccessToken] = useState<string | null>()
+    const access_token = Cookies.get('access_token')
 
     const handleDeleteEvent = async () => {
         if (deleteSelect) {
@@ -78,12 +78,6 @@ export default function EventProvider({ children }: { children: React.ReactNode 
         }
     }
 
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
-            const token = sessionStorage.getItem('access_token');
-            setAccessToken(token);
-        }
-    }, [])
 
     return <EventContext.Provider
         value={{

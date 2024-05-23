@@ -6,8 +6,9 @@ import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import successIcon from "../../../../public/icon/Success.gif";
-const Section = () => {
+import Cookies from 'js-cookie'
 
+const Section = () => {
     const clientState = useContext(ClientContext)
     const navigation = useRouter()
     const [Modal, setModal] = useState<boolean>(false)
@@ -18,7 +19,7 @@ const Section = () => {
     const [require, setRequire] = useState<boolean>(false)
     const [previewUrl, setPreviewUrl] = useState<any>(null);
 
-    const [access_token, setAccessToken] = useState<string | null>()
+    const access_token = Cookies.get('access_token')
 
     const API_URL = process.env.API_URL
 
@@ -103,13 +104,6 @@ const Section = () => {
             )
         }
     }
-
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
-            const token = sessionStorage.getItem('access_token');
-            setAccessToken(token);
-        }
-    }, [])
 
     return (
         <div className='bg-admin min-h-[70vh]'>

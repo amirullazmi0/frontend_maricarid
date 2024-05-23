@@ -6,6 +6,7 @@ import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import successIcon from "../../../../../public/icon/Success.gif";
+import Cookies from 'js-cookie'
 
 const Section = ({ id }: { id: string }) => {
     const clientState = useContext(ClientContext)
@@ -16,7 +17,7 @@ const Section = ({ id }: { id: string }) => {
     const [images, setImages] = useState<any | undefined>('')
     const [require, setRequire] = useState<boolean>(false)
     const [previewUrl, setPreviewUrl] = useState<any>(null);
-    const [access_token, setAccessToken] = useState<string | null>()
+    const access_token = Cookies.get('access_token')
 
     const handleFileChange = (event: any) => {
         const file = event.target.files[0]
@@ -67,12 +68,6 @@ const Section = ({ id }: { id: string }) => {
                                 </div>
 
                             </div>
-                            {/* <div className="">
-                                <div className="">
-                                    Add Client Successfully
-                                </div>
-                                <div className="">redirect to table event</div>
-                            </div> */}
                         </div>
                     </div>
                 </React.Fragment>
@@ -96,9 +91,6 @@ const Section = ({ id }: { id: string }) => {
 
                 if (response.data.success == true) {
                     clientState.setAddStatus(true)
-                    // setName('')
-                    // setDesc('')
-                    // setImages('')
                     setTimeout(() => {
                         navigation.push(`/admin/client`)
                         clientState.setAddStatus(false)
@@ -123,10 +115,6 @@ const Section = ({ id }: { id: string }) => {
 
     useEffect(() => {
         getClient()
-        if (typeof window !== 'undefined') {
-            const token = sessionStorage.getItem('access_token');
-            setAccessToken(token);
-        }
     }, [])
     return (
         <div className='bg-admin'>

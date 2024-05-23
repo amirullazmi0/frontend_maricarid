@@ -1,9 +1,9 @@
 'use client'
-
 import { UserDTO } from '@/model/user.model'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import { createContext, useEffect, useState } from 'react'
+import Cookies from 'js-cookie'
 
 export const AuthContext = createContext({})
 
@@ -12,7 +12,8 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
     const [currentUser, setCurrentUser] = useState<UserDTO>()
     const [Alert, setAlert] = useState<boolean>(false)
     const router = useRouter()
-    const [access_token, setAccessToken] = useState<string | null>()
+
+    const access_token = Cookies.get('access_token')
 
     const CheckAuth = async () => {
         try {
@@ -42,13 +43,6 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
             }, 10000)
         }
     }
-
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
-            const token = sessionStorage.getItem('access_token');
-            setAccessToken(token);
-        }
-    }, [])
 
     return <AuthContext.Provider
         value={{

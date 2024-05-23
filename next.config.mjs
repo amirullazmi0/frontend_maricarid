@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 import 'dotenv/config'
 const nextConfig = {
+    // output: 'export',
     eslint: {
         ignoreDuringBuilds: true,
     },

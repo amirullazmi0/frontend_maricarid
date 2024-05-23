@@ -5,11 +5,11 @@ import { useRouter } from 'next/navigation'
 import logo from "../../public/assets/fullWhite.png";
 import React, { useContext, useEffect, useState } from 'react'
 import 'dotenv/config'
-import { cookies } from 'next/headers';
+import Cookies from 'js-cookie'
 import { AuthContext } from '../admin/AuthContext';
 const Section = () => {
     const API_URL = process.env.API_URL
-    
+
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
     const [loginStatus, setLoginStatus] = useState<boolean | string>('')
@@ -24,7 +24,7 @@ const Section = () => {
                 })
 
                 if (response.data.success == true) {
-                    sessionStorage.setItem('access_token', response.data.data.token)
+                    Cookies.set('access_token', response.data.data.token)
                     setLoginStatus(true)
                     setTimeout(() => {
                         navigation.push('/admin')

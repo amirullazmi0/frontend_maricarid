@@ -1,10 +1,10 @@
 'use client'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-
+import Cookies from 'js-cookie'
 const FormVisiMisi = () => {
     const API_URL = process.env.API_URL
-    const [access_token, setAccessToken] = useState<string | null>()
+    const access_token = Cookies.get('access_token')
     const [AlertSuccessVisiMisi, setAlertSuccessVisiMisi] = useState<boolean>(false)
     const [visi, setVisi] = useState<string>('')
     const [misi, setMisi] = useState<string>('')
@@ -60,10 +60,6 @@ const FormVisiMisi = () => {
     useEffect(() => {
         getVisi()
         getMisi()
-        if (typeof window !== 'undefined') {
-            const token = sessionStorage.getItem('access_token');
-            setAccessToken(token);
-        }
     }, [])
 
     return (
