@@ -54,7 +54,7 @@ const Navbar = ({ active }: { active: string }) => {
 
     return (
         <React.Fragment>
-            <div className='fixed w-screen z-50 top-0 left-0' ref={navbarRef}>
+            <div className='fixed w-screen z-40 top-0 left-0' ref={navbarRef}>
                 <div className="flex justify-between p-2 items-center text-white gap-6 z-20 lg:pl-52 pr-5 lg:pr-52 relative bg-dark shadow-lg">
                     <div className="">
                         <Image alt='' src={logoWhite} className='h-28 w-fit' />
