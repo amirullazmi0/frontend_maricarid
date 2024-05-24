@@ -1,0 +1,23 @@
+{
+  "/_not-found": "app/_not-found.js",
+  "/about-us/page": "app/about-us/page.js",
+  "/admin/client/add/page": "app/admin/client/add/page.js",
+  "/admin/client/edit/[id]/page": "app/admin/client/edit/[id]/page.js",
+  "/admin/event/add/page": "app/admin/event/add/page.js",
+  "/admin/event/edit/[id]/page": "app/admin/event/edit/[id]/page.js",
+  "/admin/event/page": "app/admin/event/page.js",
+  "/admin/event/[id]/page": "app/admin/event/[id]/page.js",
+  "/admin/page": "app/admin/page.js",
+  "/admin/client/page": "app/admin/client/page.js",
+  "/admin/profile/page": "app/admin/profile/page.js",
+  "/event/[id]/page": "app/event/[id]/page.js",
+  "/login/page": "app/login/page.js",
+  "/contact-us/page": "app/contact-us/page.js",
+  "/marine-traffic/page": "app/marine-traffic/page.js",
+  "/event/page": "app/event/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/page": "app/page.js",
+  "/service/ship-agency/page": "app/service/ship-agency/page.js",
+  "/service/logistic/page": "app/service/logistic/page.js",
+  "/service/stevedoring-equipment/page": "app/service/stevedoring-equipment/page.js"
+}
