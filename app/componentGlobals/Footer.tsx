@@ -18,23 +18,16 @@ const Footer = () => {
                 </aside>
                 <nav>
                     <h6 className="footer-title">Services</h6>
-                    <Link href={'#'} className="">Branding</Link>
-                    <Link href={'#'} className="">Design</Link>
-                    <Link href={'#'} className="">Marketing</Link>
-                    <Link href={'#'} className="">Advertisement</Link>
+                    <Link href={'/service/ship-agency'} className="">Ship Agency</Link>
+                    <Link href={'/service/logistic'} className="">Logistics</Link>
+                    <Link href={'/service/stevedoring-equipment'} className="">Stevedoring & Equipment</Link>
                 </nav>
                 <nav>
                     <h6 className="footer-title">Company</h6>
-                    <Link href={'#'} className="">About us</Link>
-                    <Link href={'#'} className="">Contact</Link>
-                    <Link href={'#'} className="">Jobs</Link>
-                    <Link href={'#'} className="">Press kit</Link>
-                </nav>
-                <nav>
-                    <h6 className="footer-title">Legal</h6>
-                    <Link href={'#'} className="">Terms of use</Link>
-                    <Link href={'#'} className="">Privacy policy</Link>
-                    <Link href={'#'} className="">Cookie policy</Link>
+                    <Link href={'/about-us'} className="">About us</Link>
+                    <Link href={'/contact-us'} className="">Contact</Link>
+                    <Link href={'/event'} className="">Our Activity</Link>
+                    <Link href={'/marine-traffic'} className="">Marine-traffic</Link>
                 </nav>
             </footer>
             <button onClick={handleToTop} className='btn fixed bottom-5 right-5 btn-circle'>
