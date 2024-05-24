@@ -22,7 +22,7 @@ const Service = () => {
                                     <Image alt='' src={planeIcon} className='lg:md:h-full h-1/2 w-auto' />
                                 </div>
                                 <div className='lg:md:text-lg text-sm font-bold text-center text-sky-950  '>
-                                    AIR FREIGHT / LOGISTICS
+                                    LOGISTICS
                                 </div>
                             </div>
                         </div>
@@ -35,7 +35,7 @@ const Service = () => {
                                     <Image alt='' src={truckIcon} className='lg:md:h-full h-1/2 w-auto' />
                                 </div>
                                 <div className='lg:md:text-lg text-sm font-bold text-center text-sky-950  '>
-                                    ROAD FREIGHT / TRUCKING
+                                    TRUCKING
                                 </div>
                             </div>
                         </div>
@@ -48,7 +48,7 @@ const Service = () => {
                                     <Image alt='' src={shipIcon} className='lg:md:h-full h-1/2 w-auto' />
                                 </div>
                                 <div className='lg:md:text-lg text-sm font-bold text-center text-sky-950  '>
-                                    OCEAN FREIGHT / SHIPPING AGENCY
+                                    SHIP AGENCY
                                 </div>
                             </div>
                         </div>
@@ -61,7 +61,7 @@ const Service = () => {
                                     <Image alt='' src={wareHouseIcon} className='lg:md:h-full h-1/2 w-auto' />
                                 </div>
                                 <div className='lg:md:text-lg text-sm font-bold text-center text-sky-950  '>
-                                    WARE HOUSING / CUSTOMS CLEARANCE
+                                    STEVEDORING
                                 </div>
                             </div>
                         </div>
@@ -74,7 +74,7 @@ const Service = () => {
                                     <Image alt='' src={storageIcon} className='lg:md:h-full h-1/2 w-auto' />
                                 </div>
                                 <div className='lg:md:text-lg text-sm font-bold text-center text-sky-950  '>
-                                    STORAGE / BUNKER SUPPLY
+                                    WAREHOUSING
                                 </div>
                             </div>
                         </div>
@@ -87,7 +87,7 @@ const Service = () => {
                                     <Image alt='' src={bargeIcon} className='lg:md:h-full h-1/2 w-auto' />
                                 </div>
                                 <div className='lg:md:text-lg text-sm font-bold text-center text-sky-950  '>
-                                    PACKAGING / SHIPCHANDLER
+                                    SHIPCHANDLER
                                 </div>
                             </div>
                         </div>
