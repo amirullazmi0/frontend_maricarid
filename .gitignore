@@ -20,7 +20,7 @@
 .DS_Store
 *.pem
 
-# debug
+# debug 
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -34,4 +34,4 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-.env
+# .env
