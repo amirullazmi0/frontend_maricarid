@@ -108,7 +108,7 @@ const Section = () => {
                                 </div>
 
                                 <hr />
-                                <div className="flex justify-center mt-5">
+                                <div className="flex just   ify-center mt-5">
                                     <button onClick={() => handleLogin()} type='submit' className='btn btn-neutral btn-wide'> Login</button>
                                 </div>
                                 <div className="flex justify-center">
