@@ -9,9 +9,9 @@ const Section = () => {
             <div className="lg:w-[70%] p-2">
                 <Image alt='' src={logo} className='h-32 w-fit' />
                 <div className="text-lg text-center">
-                    Maricar ship agency is Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit quasi esse ea quos illum, omnis odit accusamus sit repellat, iure possimus magni eveniet vitae perspiciatis odio aut dolore, atque animi dolor veniam soluta in sint! Perferendis tempora unde facilis. Facilis illum dolore id modi, vel ducimus amet omnis numquam labore distinctio repellat maxime aspernatur alias incidunt excepturi pariatur nihil libero ut necessitatibus. Dicta, quis. Eligendi possimus voluptatem praesentium eveniet dolores, cupiditate fuga aut omnis. Quasi obcaecati ipsum natus magnam quod eius, velit quos nisi, enim eaque perferendis deserunt unde porro magni, voluptatum consequatur voluptatem optio? Minus voluptate ea inventore hic?
+                    MARICAR SHIP AGENCY was established in May 2020, which is engaged in ship agency services, the company was originally established to answer the needs of ship owners whose ships would be active in ports.
                     <br /><br />
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere omnis repellat ex explicabo assumenda at accusantium laudantium eos! A ducimus illo ipsam rerum laborum tempore, sit laboriosam? Mollitia reiciendis ad libero cupiditate a unde, nostrum nisi beatae possimus sapiente labore odio explicabo accusamus, magnam rem alias perspiciatis minus eos asperiores voluptates, repellat vitae suscipit? Perferendis blanditiis excepturi iste quibusdam?
+                    Promoting honesty and teamwork. we provide the best services and solve problems with the solutions we gift for every obstacle on the ship. The team that we have right now is a the best team, experienced, successful advance in their field, have the motivation and dedication in carrying out and completing the work of the client with timely and quality assured so that the client gets its own satisfaction. Supported by The Fleet and His crew are professionals, we hope to give you the satisfaction of our service to you.
                 </div>
             </div>
         </div>
