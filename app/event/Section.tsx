@@ -35,8 +35,13 @@ const Section = () => {
     return (
         <div className='flex justify-center p-3'>
             <div className="lg:md:w-[80%] w-[100%] p-3 relative text-dark">
-                <div className="text-2xl font-bold mb-4">ACTIVITY & EVENT</div>
-                <div className="capitalize mb-4">this our gallery about activities and events in  <span className=' p-2 bg-warning font-bold'>MARICAR</span>  </div>
+                <div className="text-2xl font-bold mb-4 uppercase">Activities & Events</div>
+                <div className="capitalize mb-4 lg:w-[60%] lg:p-10 p-4">
+                    Welcome to our gallery, where you can experience the excitement and joy happening at <span className='p-1 bg-warning font-bold'>MARICAR</span>. We proudly present a collection of photos and videos that document the various activities and events we have organized. Through this gallery, you can catch a glimpse of the special moments and unforgettable memories we have created together.
+                    <br /><br />
+                    <span className='font-bold uppercase'>Daily Activities at MARICAR </span>
+                    We offer a variety of exciting activities designed to provide the best experience for you. From thrilling racing sessions on city streets to leisurely rides with beautiful scenery, each of our activities is crafted to deliver maximum excitement and satisfaction. We believe that every moment is an opportunity for a new adventure, and we strive to make every activity an extraordinary experience.
+                </div>
                 <div className="grid lg:md:grid-cols-2 gap-5">
                     {data && data.length > 0 ? data.map((item: eventDTO, index: number) => {
                         const desc = item.desc

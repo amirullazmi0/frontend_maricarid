@@ -38,7 +38,7 @@ const Activities = () => {
             <div className="flex justify-center items-center">
                 <div className="lg:md:w-[80vw] w-[90vw] uppercase font-bold">
                     <div className="lg:md:text-xl ">
-                        Activities
+                        Our Galleries
                     </div>
 
                     <div className="flex flex-wrap justify-center lg:gap-4 gap-2 mt-4">
@@ -72,11 +72,13 @@ const Activities = () => {
                             </React.Fragment>
                         }
                     </div>
-                    <div className="flex justify-center w-full">
-                        <Link href={`/event`}>
-                            <button className="hover:scale-110 active:scale-95 border-black duration-200 p-3 font-light">More Activities {`>>>`}</button >
-                        </Link>
-                    </div>
+                    {data && data.length > 0 &&
+                        <div className="flex justify-center w-full">
+                            <Link href={`/event`}>
+                                <button className="hover:scale-110 active:scale-95 border-black duration-200 p-3 font-light">More {`...`}</button >
+                            </Link>
+                        </div>
+                    }
                 </div>
             </div>
         </div>

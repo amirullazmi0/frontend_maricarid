@@ -44,7 +44,7 @@ const Navbar = ({ active }: { active: string }) => {
         return (
             <React.Fragment>
                 <button onClick={() => handleNavigation('')} className={`hover:scale-105 w-fit active:scale-95 duration-200 pl-3 pr-3 ${active === `dashboard` && `border-b-4 border-warning`}`}>Dashboard</button>
-                <button onClick={() => handleNavigation('event')} className={`hover:scale-105 w-fit active:scale-95 duration-200 pl-3 pr-3 ${active === `event` && `border-b-4 border-warning`}`}>Event</button>
+                <button onClick={() => handleNavigation('event')} className={`hover:scale-105 w-fit active:scale-95 duration-200 pl-3 pr-3 ${active === `event` && `border-b-4 border-warning`}`}>Gallery</button>
                 <button onClick={() => handleNavigation('client')} className={`hover:scale-105 w-fit active:scale-95 duration-200 pl-3 pr-3 ${active === `client` && `border-b-4 border-warning`}`}>Client</button>
                 <button onClick={() => handleNavigation('profile')} className={`hover:scale-105 w-fit active:scale-95 duration-200 pl-3 pr-3 ${active === `profile` && `border-b-4 border-warning`}`}>Profile</button>
                 <button onClick={() => handleLogout()} className='btn btn-warning rounded-sm ml-2 mr-2'>Logout</button>

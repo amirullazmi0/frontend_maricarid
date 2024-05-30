@@ -20,20 +20,20 @@ const Navbar: React.FC<Props> = ({ active }) => {
     const linkItem = () => {
         return (
             <React.Fragment>
-                <Link className={`hover:scale-125 active:scale-105 border-black duration-100 pl-3 pr-3 ${active == 'home' && `border-b-4 border-black`}`} href={'/'}>Home</Link>
-                {/* <Link className={`hover:scale-125 active:scale-105 border-black duration-100 pl-3 pr-3 ${active == 'service' && `border-b-4 border-black`}`} href={'/service'}>Service</Link> */}
-                <Link className={`hover:scale-125 active:scale-105 border-black duration-100 pl-3 pr-3 ${active == 'marineTraffic' && `border-b-4 border-black`}`} href={'/marine-traffic'}>Marine Traffic</Link>
-                <Link className={`hover:scale-125 active:scale-105 border-black duration-100 pl-3 pr-3 ${active == 'event' && `border-b-4 border-black`}`} href={'/event'}>Event</Link>
+                <Link className={`hover:scale-125 active:scale-105 text-dark border-black duration-100 pl-3 pr-3 ${active == 'home' && `border-b-4 border-black`}`} href={'/'}>Home</Link>
+                {/* <Link className={`hover:scale-125 active:scale-105 text-dark border-black duration-100 pl-3 pr-3 ${active == 'service' && `border-b-4 border-black`}`} href={'/service'}>Service</Link> */}
+                <Link className={`hover:scale-125 active:scale-105 text-dark border-black duration-100 pl-3 pr-3 ${active == 'marineTraffic' && `border-b-4 border-black`}`} href={'/marine-traffic'}>Marine Traffic</Link>
+                <Link className={`hover:scale-125 active:scale-105 text-dark border-black duration-100 pl-3 pr-3 ${active == 'event' && `border-b-4 border-black`}`} href={'/event'}>Gallery</Link>
                 <div className="dropdown flex justify-center">
-                    <div tabIndex={0} role="button" className={`hover:scale-125 active:scale-105 border-black duration-100 pl-3 pr-3 ${active == 'service' && ``}`}>Service</div>
+                    <div tabIndex={0} role="button" className={`hover:scale-125 active:scale-105 text-dark border-black duration-100 pl-3 pr-3 ${active == 'service' && ``}`}>Service</div>
                     <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-white w-52 rounded-sm grid gap-4 translate-y-10">
-                        <Link href={`/service/ship-agency`} className='hover:bg-transparent p-2 active:bg-transparent active:scale-95 hover:scale-105 duration-200 text-center text-md '>Ship Agency</Link>
-                        <Link href={`/service/logistic`} className='hover:bg-transparent p-2 active:bg-transparent active:scale-95 hover:scale-105 duration-200 text-center text-md '>Logistics</Link>
-                        <Link href={`/service/stevedoring-equipment`} className='hover:bg-transparent p-2 active:bg-transparent active:scale-95 hover:scale-105 duration-200 text-center text-md '>Stevedoring & Equipment</Link>
+                        <Link href={`/service/ship-agency`} className='hover:bg-transparent p-2 text-dark active:bg-transparent active:scale-95 hover:scale-105 duration-200 text-center text-md '>Ship Agency</Link>
+                        <Link href={`/service/logistic`} className='hover:bg-transparent p-2 text-dark active:bg-transparent active:scale-95 hover:scale-105 duration-200 text-center text-md '>Logistics</Link>
+                        <Link href={`/service/stevedoring-equipment`} className='hover:bg-transparent p-2 text-dark active:bg-transparent active:scale-95 hover:scale-105 duration-200 text-center text-md '>Stevedoring & Equipment</Link>
                     </ul>
                 </div>
-                <Link className={`hover:scale-125 active:scale-105 border-black duration-100 pl-3 pr-3 ${active == 'aboutUs' && `border-b-4 border-black`}`} href={'/about-us'}>About Us</Link>
-                <Link className={`hover:scale-125 active:scale-105 border-black duration-100 pl-3 pr-3 ${active == 'contactUs' && `border-b-4 border-black`}`} href={'/contact-us'}>Contact Us</Link>
+                <Link className={`hover:scale-125 active:scale-105 text-dark border-black duration-100 pl-3 pr-3 ${active == 'aboutUs' && `border-b-4 border-black`}`} href={'/about-us'}>About Us</Link>
+                <Link className={`hover:scale-125 active:scale-105 text-dark border-black duration-100 pl-3 pr-3 ${active == 'contactUs' && `border-b-4 border-black`}`} href={'/contact-us'}>Contact Us</Link>
             </React.Fragment>
         )
     }
