@@ -9,7 +9,7 @@ import Media from "./Media";
 
 export default function Home() {
   return (
-    <main className="">
+    <main className="bg-white">
       <Navbar active="contactUs" />
       <TronContactUs />
       <Media />

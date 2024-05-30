@@ -34,10 +34,10 @@ const Activities = () => {
     }, [])
 
     return (
-        <div className='min-w-screen pt-4 pb-4 bg-white'>
+        <div className='min-w-screen pt-4 pb-4 bg-white text-dark'>
             <div className="flex justify-center items-center">
                 <div className="lg:md:w-[80vw] w-[90vw] uppercase font-bold">
-                    <div className="lg:md:text-xl">
+                    <div className="lg:md:text-xl ">
                         Activities
                     </div>
 

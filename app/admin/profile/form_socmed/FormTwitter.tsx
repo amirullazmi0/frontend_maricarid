@@ -70,8 +70,8 @@ const FormTwitter = () => {
                     <input value={data?.link} onChange={(e) => setData({
                         name: 'twitter',
                         link: e.target.value
-                    })} type="text" placeholder="Type here" className="input rounded-none input-bordered w-full lg:max-w-lg" />
-                    <button onClick={handleUpdate} className='btn btn-neutral rounded-l-none rounded-r-lg uppercase'>update</button>
+                    })} type="text" placeholder="Type here" className="input bg-white rounded-none input-bordered w-full lg:max-w-lg" />
+                    <button onClick={handleUpdate} className='btn btn-neutral text-white rounded-l-none rounded-r-lg uppercase'>update</button>
                 </div>
             </div>
         </div>

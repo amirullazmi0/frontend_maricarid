@@ -34,7 +34,7 @@ const Section = () => {
     }, [])
     return (
         <div className='flex justify-center p-3'>
-            <div className="lg:md:w-[80%] w-[100%] p-3 relative">
+            <div className="lg:md:w-[80%] w-[100%] p-3 relative text-dark">
                 <div className="text-2xl font-bold mb-4">ACTIVITY & EVENT</div>
                 <div className="capitalize mb-4">this our gallery about activities and events in  <span className=' p-2 bg-warning font-bold'>MARICAR</span>  </div>
                 <div className="grid lg:md:grid-cols-2 gap-5">

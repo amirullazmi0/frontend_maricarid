@@ -133,7 +133,7 @@ const Section = () => {
                             }
                             <div className="">
                                 <div className="text-white mb-1">Event Name</div>
-                                <input value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder="event name" className="input input-bordered rounded-sm w-full" />
+                                <input value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder="event name" className="input bg-white  input-bordered  rounded-sm w-full" />
                             </div>
                             <div className="">
                                 <div className="text-white mb-1">Event Description</div>

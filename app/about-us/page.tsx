@@ -11,7 +11,7 @@ import VisiMisi from "./VisiMisi";
 
 export default function Home() {
   return (
-    <main className="">
+    <main className="bg-white">
       <Navbar active="aboutUs" />
       <TronAboutUs />
       <Section />

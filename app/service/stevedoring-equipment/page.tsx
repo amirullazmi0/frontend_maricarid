@@ -7,7 +7,7 @@ import Section from "./Section";
 
 export default function Home() {
   return (
-    <main className="">
+    <main className="bg-white">
       <Navbar active="service" />
       <TronService title="Stevedoring & Equipment" />
       <Section />

@@ -57,13 +57,13 @@ const FormPassword = () => {
                 <div className="text-white text-center border-b-4 uppercase font-bold w-fit ">
                     new password
                 </div>
-                <input value={newPassword} onChange={(e) => setNewPassword(e.target.value)} type="password" className='input w-full mt-1 rounded-none' />
+                <input value={newPassword} onChange={(e) => setNewPassword(e.target.value)} type="password" className='input bg-white  w-full mt-1 rounded-none' />
             </div>
             <div className="">
                 <div className="text-white text-center border-b-4 uppercase font-bold w-fit">
                     confirm new password
                 </div>
-                <input value={confirmNewPassword} onChange={(e) => setConfirmNewPassword(e.target.value)} type="password" className='input w-full mt-1 rounded-none' />
+                <input value={confirmNewPassword} onChange={(e) => setConfirmNewPassword(e.target.value)} type="password" className='input bg-white  w-full mt-1 rounded-none' />
             </div>
             {confirmNewPassword && confirmNewPassword.length > 0 && confirmNewPassword !== newPassword &&
                 <div className="p-2 rounded-sm border-4 uppercase border-red-600 text-red-500 text-center">
@@ -77,7 +77,7 @@ const FormPassword = () => {
                 </div>
             }
             <div className="">
-                <button onClick={handleUpdatePassword} className='btn btn-neutral w-full uppercase rounded-none'>update password</button>
+                <button onClick={handleUpdatePassword} className='btn btn-neutral w-full text-white uppercase rounded-none'>update password</button>
             </div>
         </div>
     )

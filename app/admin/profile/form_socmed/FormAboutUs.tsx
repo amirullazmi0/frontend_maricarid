@@ -57,10 +57,10 @@ const FormAboutUs = () => {
                     </div>
                 }
                 <div className="">
-                    <textarea value={data} onChange={(e) => setData(e.target.value)} rows={5} className='textarea w-full rounded-none'></textarea>
+                    <textarea value={data} onChange={(e) => setData(e.target.value)} rows={5} className='textarea bg-white w-full rounded-none'></textarea>
                 </div>
             </div>
-            <button onClick={handleUpdate} className='btn btn-neutral rounded-t-none rounded-b-lg uppercase'>update bio</button>
+            <button onClick={handleUpdate} className='btn btn-neutral rounded-t-none rounded-b-lg text-white uppercase'>update bio</button>
         </div>
     )
 }

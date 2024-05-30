@@ -14,7 +14,7 @@ export default function Home({ params }: { params: { id: string } }) {
         <AuthProvider>
             <CheckAuthAdmin />
             <ClientProvider >
-                <main className="">
+                <main className="bg-white">
                     <Navbar active="event" />
                     <div className="mt-[20vh]">
                         <Section id={params.id} />

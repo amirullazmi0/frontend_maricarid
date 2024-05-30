@@ -81,7 +81,7 @@ const Section = () => {
 
     return (
         <div className='bg-login '>
-            <div className="bg-[#000000bb] w-screen min-h-screen flex justify-center items-center">
+            <div className="bg-[#000000bb] w-screen min-h-screen flex justify-center items-center text-dark">
                 <div className=" rounded-xl lg:w-[60%] w-[90%] bg-white overflow-hidden">
                     <div className="lg:grid grid-cols-2">
                         <div className="min-h-[75vh] flex items-center justify-center p-5">
@@ -96,11 +96,11 @@ const Section = () => {
                                 {renderAlert()}
                                 <div className="">
                                     <div className="mb-2">Email</div>
-                                    <input value={email} onChange={(e) => setEmail(e.target.value)} type="text" placeholder="email" className="input input-bordered w-full" />
+                                    <input value={email} onChange={(e) => setEmail(e.target.value)} type="text" placeholder="email" className="input bg-white  input-bordered  w-full" />
                                 </div>
                                 <div className="">
                                     <div className="mb-2">Password</div>
-                                    <input value={password} onChange={(e) => setPassword(e.target.value)} type={isChecked ? 'text' : 'password'} placeholder="password" className="input input-bordered w-full" />
+                                    <input value={password} onChange={(e) => setPassword(e.target.value)} type={isChecked ? 'text' : 'password'} placeholder="password" className="input bg-white  input-bordered  w-full" />
                                 </div>
                                 <div className=" flex justify-end gap-3 ">
                                     <div >Show Password</div>
@@ -108,8 +108,8 @@ const Section = () => {
                                 </div>
 
                                 <hr />
-                                <div className="flex just   ify-center mt-5">
-                                    <button onClick={() => handleLogin()} type='submit' className='btn btn-neutral btn-wide'> Login</button>
+                                <div className="flex justify-center mt-5">
+                                    <button onClick={() => handleLogin()} type='submit' className='btn btn-neutral btn-wide text-white uppercase'> Login</button>
                                 </div>
                                 <div className="flex justify-center">
                                     <span className='text-sm'>Back to dashboard <Link className='btn btn-sm btn-warning' href={'/'}>Here</Link></span>

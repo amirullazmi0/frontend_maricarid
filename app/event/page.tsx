@@ -6,7 +6,7 @@ import TronEvent from "../componentGlobals/TronEvent";
 
 export default function Home() {
   return (
-    <main className="">
+    <main className="bg-white">
       <Navbar active="event" />
       <TronEvent />
       <Section />

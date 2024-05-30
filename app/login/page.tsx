@@ -8,7 +8,7 @@ export default function Home() {
     return (
         <AuthProvider>
             <CheckAuth />
-            <main className="">
+            <main className="bg-white">
                 <Section />
             </main>
         </AuthProvider>

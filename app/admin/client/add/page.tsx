@@ -13,7 +13,7 @@ export default function Home() {
         <AuthProvider>
             <CheckAuthAdmin />
             <ClientProvider >
-                <main className="">
+                <main className="bg-white">
                     <Navbar active="client" />
                     <div className="mt-[20vh]">
                         <Section />

@@ -10,7 +10,7 @@ export default function Home() {
     return (
         <AuthProvider>
             <CheckAuthAdmin />
-            <main className="">
+            <main className="bg-white">
                 <Navbar active="dashboard" />
                 <div className="mt-[20vh]">
                     <Section />

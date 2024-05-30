@@ -6,7 +6,7 @@ import TronEventItem from "@/app/componentGlobals/TronEventItem";
 
 export default function Home({ params }: { params: { id: string } }) {
   return (
-    <main className="">
+    <main className="bg-white">
       <Navbar active="event" />
       <TronEventItem />
       <Section id={params.id} />

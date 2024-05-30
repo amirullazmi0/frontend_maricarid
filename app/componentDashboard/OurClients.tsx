@@ -29,7 +29,7 @@ const OurClients = () => {
 
     return (
         <div className='min-w-screen pt-4 pb-4'>
-            <div className="flex justify-center items-center">
+            <div className="flex justify-center items-center text-dark">
                 <div className="max-w-[100vw] min-w-[80vw] uppercase font-bold">
                     <div className="lg:md:text-xl lg:p-0 p-2">
                         Our Clients

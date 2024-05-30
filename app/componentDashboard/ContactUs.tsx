@@ -10,7 +10,7 @@ const ContactUs = () => {
                         <div className="lg:md:text-xl text-slate-400">
                             Contact Us
                         </div>
-                        <div className="lg:md:text-2xl">KEEP IN TOUCH</div>
+                        <div className="lg:md:text-2xl text-dark">KEEP IN TOUCH</div>
                     </div>
                     <div className="lg:md:grid grid-cols-2 min-h-[50vh]">
                         <div className="p-4 text-slate-600 lg:md:w-[80%] flex items-center">
@@ -23,32 +23,32 @@ const ContactUs = () => {
                                 </div> */}
                             </div>
                         </div>
-                        <div className="grid grid-cols-10">
+                        <div className="grid grid-cols-10 text-black">
                             <div className="col-span-2 bg-[url('/aboutus.jpg')] bg-cover bg-center"></div>
                             <div className="col-span-8 bg-white lg:md:p-4 p-2">
                                 <div className="grid lg:md:grid-cols-2 grid-cols-1 gap-3">
                                     <div className="col-span-1 grid gap-1">
                                         <div className="text-sm font-normal">Full Name</div>
-                                        <input type="text" className="input input-bordered w-full max-w-xs rounded-sm" />
+                                        <input type="text" className="input bg-white  input-bordered  w-full max-w-xs rounded-sm" />
                                     </div>
                                     <div className="grid gap-1">
                                         <div className="text-sm font-normal">Email</div>
-                                        <input type="text" className="input input-bordered w-full max-w-xs rounded-sm" />
+                                        <input type="text" className="input bg-white  input-bordered  w-full max-w-xs rounded-sm" />
                                     </div>
                                     <div className="grid gap-1">
                                         <div className="text-sm font-normal">Subject</div>
-                                        <input type="text" className="input input-bordered w-full max-w-xs rounded-sm" />
+                                        <input type="text" className="input bg-white  input-bordered  w-full max-w-xs rounded-sm" />
                                     </div>
                                     <div className="grid gap-1">
                                         <div className="text-sm font-normal">Phone</div>
-                                        <input type="text" className="input input-bordered w-full max-w-xs rounded-sm" />
+                                        <input type="text" className="input bg-white  input-bordered  w-full max-w-xs rounded-sm" />
                                     </div>
                                     <div className="lg:md:col-span-2 grid gap-1">
                                         <div className="text-sm font-normal">Comment</div>
-                                        <textarea className="textarea textarea-bordered rounded-sm" rows={5} style={{ resize: 'none' }} ></textarea>
+                                        <textarea className="textarea textarea-bordered rounded-sm bg-white" rows={5} style={{ resize: 'none' }} ></textarea>
                                     </div>
                                     <div className="lg:md:col-span-2 grid gap-1">
-                                        <button className="btn btn-sm btn-neutral rounded-sm uppercase">
+                                        <button className="btn btn-sm btn-neutral rounded-sm uppercase text-white">
                                             Submit
                                         </button>
                                     </div>

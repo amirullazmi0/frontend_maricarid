@@ -60,19 +60,19 @@ const FormUsername = () => {
                     <div className="text-white text-center border-b-4 uppercase font-bold w-fit">
                         Full Name
                     </div>
-                    <input value={fullName} onChange={(e) => setfullName(e.target.value)} type="text" className='input w-full mt-1 rounded-none' />
+                    <input value={fullName} onChange={(e) => setfullName(e.target.value)} type="text" className='input bg-white  w-full mt-1 rounded-none' />
                 </div>
                 <div className="">
                     <div className="text-white text-center border-b-4 uppercase font-bold w-fit">
                         Email
                     </div>
-                    <input value={Email} onChange={(e) => setEmail(e.target.value)} type="text" className='input w-full mt-1 rounded-none' />
+                    <input value={Email} onChange={(e) => setEmail(e.target.value)} type="text" className='input bg-white  w-full mt-1 rounded-none' />
                 </div>
                 {/* <div className="">
                     <div className="text-white text-center border-b-4 uppercase font-bold w-fit">
                         Bio
                     </div>
-                    <textarea className='textarea w-full mt-1 rounded-none' rows={3}></textarea>
+                    <textarea className='textarea bg-white w-full mt-1 rounded-none' rows={3}></textarea>
                 </div> */}
                 <div className="">
                     <button onClick={handleUpdateUser} className='btn btn-success w-full uppercase rounded-none'>Save</button>

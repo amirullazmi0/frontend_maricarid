@@ -6,7 +6,7 @@ import Footer from "./componentGlobals/Footer";
 
 export default function Home() {
   return (
-    <main className="">
+    <main className="bg-white">
       <Navbar active="home" />
       <Tron />
       <Section />

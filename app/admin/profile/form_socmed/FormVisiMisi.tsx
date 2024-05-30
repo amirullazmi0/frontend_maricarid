@@ -75,14 +75,14 @@ const FormVisiMisi = () => {
                 }
                 <div className="">
                     <div className="text-slate-300 uppercase font-thin">Vision</div>
-                    <textarea value={visi} onChange={(e) => setVisi(e.target.value)} rows={5} className='textarea w-full rounded-none'></textarea>
+                    <textarea value={visi} onChange={(e) => setVisi(e.target.value)} rows={5} className='textarea bg-white w-full rounded-none'></textarea>
                 </div>
                 <div className="">
                     <div className="text-slate-300 uppercase font-thin">Mission</div>
-                    <textarea value={misi} onChange={(e) => setMisi(e.target.value)} rows={5} className='textarea w-full rounded-none'></textarea>
+                    <textarea value={misi} onChange={(e) => setMisi(e.target.value)} rows={5} className='textarea bg-white w-full rounded-none'></textarea>
                 </div>
             </div>
-            <button onClick={handleUpdate} className='btn btn-neutral rounded-t-none rounded-b-lg uppercase'>update visi & misi</button>
+            <button onClick={handleUpdate} className='btn btn-neutral rounded-t-none rounded-b-lg text-white uppercase'>update visi & misi</button>
         </div>
     )
 }

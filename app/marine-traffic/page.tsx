@@ -9,7 +9,7 @@ import TronMarineTraffic from "../componentGlobals/TronMarineTraffic";
 
 export default function Home() {
   return (
-    <main className="">
+    <main className="bg-white">
       <Navbar active="marineTraffic" />
       <TronMarineTraffic />
       <Section />
