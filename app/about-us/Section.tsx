@@ -31,7 +31,7 @@ const AboutUs = () => {
                     <div className="lg:w-[60%] h-full">
                         <div className="font-bold text-2xl text-center">MARICAR</div>
                         {data ?
-                            <div className="text-lg text-center mt-2 text-slate-300">{data.desc}</div>
+                            <div className="text-lg text-center mt-2 text-slate-300" dangerouslySetInnerHTML={{ __html: data.desc ? data.desc : '' }} />
                             :
                             <div className="min-h-[10vh] flex justify-center items-center w-full text-center">
                                 <span className="loading loading-dots loading-lg text-white"></span>
