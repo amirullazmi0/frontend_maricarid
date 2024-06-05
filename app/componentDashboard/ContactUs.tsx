@@ -1,5 +1,6 @@
 'use client'
 import axios from 'axios'
+import Link from 'next/link'
 import React, { useState } from 'react'
 
 const ContactUs = () => {
@@ -48,6 +49,9 @@ const ContactUs = () => {
                             <div className="">
                                 <div className="">
                                     <span className='text-black uppercase font-bold p-1 bg-warning'>Maricar Group</span> is widely trusted by customers because it provides the best offers for Shipping Agency and Logistics Services.
+                                </div>
+                                <div className="text-black">
+                                    Email to <Link className='link' href={'mailto:info@maricar.com'}>info@maricar.com</Link>
                                 </div>
                             </div>
                         </div>
