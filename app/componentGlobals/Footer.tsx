@@ -53,7 +53,7 @@ const Footer = () => {
                 </footer>
                 <footer className="footer w-[75vw] p-10  text-white">
                     <aside>
-                        <div className="" dangerouslySetInnerHTML={{ __html: address }} />
+                        <div className="text-xl text-white font-bold" dangerouslySetInnerHTML={{ __html: address }} />
                     </aside>
                 </footer>
             </div>

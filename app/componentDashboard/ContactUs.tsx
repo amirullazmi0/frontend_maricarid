@@ -50,8 +50,8 @@ const ContactUs = () => {
                                 <div className="">
                                     <span className='text-black uppercase font-bold p-1 bg-warning'>Maricar Group</span> is widely trusted by customers because it provides the best offers for Shipping Agency and Logistics Services.
                                 </div>
-                                <div className="text-black">
-                                    Email to <Link className='link' href={'mailto:info@maricar.com'}>info@maricar.com</Link>
+                                <div className="text-black mt-5">
+                                    Email to <Link className='btn btn-error btn-sm text-white' href={'mailto:info@maricar.com'}>info@maricar.com</Link>
                                 </div>
                             </div>
                         </div>
