@@ -68,7 +68,7 @@ const Navbar = ({ active }: { active: string }) => {
                         </svg>
                     </button>
                 </div>
-                <div ref={navbarRef} className={`lg:hidden visible flex justify-center p-2 bg-[#1f1f1f] w-screen z-10  duration-200 translate-y-[-100%] ${dropdown && `translate-y-[0%]`} shadow-lg`}>
+                <div ref={navbarRef} className={`lg:hidden visible flex justify-center p-2 bg-[#1f1f1f] w-screen z-10  duration-200 mt-[-100%] ${dropdown && `mt-[0%]`} shadow-lg`}>
                     <div className="text-white flex flex-col justify-center items-center text-center gap-3">
                         {navItem()}
                     </div>
