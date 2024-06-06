@@ -55,7 +55,7 @@ const Section = () => {
                                     </div>
                                     <div className="lg:card-body p-3 aspect-square overflow-hidden">
                                         <button onClick={() => handleNavigation(item.id ? item.id : '')} >
-                                            <h2 className="lg:card-title text-white uppercase">{item.name}</h2>
+                                            <h2 className="lg:card-title text-white uppercase text-left">{item.name}</h2>
                                         </button>
                                         <h2 className="text-warning font-normal text-xs">{moment(item.createdAt).format(`DD MMMM YYYY`)}</h2>
                                         {/* <p className='text-slate-300 font-thin p-2 lg:text-sm text-xs'>{truncate}</p> */}
