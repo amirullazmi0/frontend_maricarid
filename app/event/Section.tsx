@@ -53,10 +53,12 @@ const Section = () => {
                                     <div className="aspect-square overflow-hidden">
                                         <img className='object-cover h-full w-fit hover:scale-105 duration-200' src={item.images ? item.images[0] : '/default.jpg'} alt="Album" />
                                     </div>
-                                    <div className="lg:card-body p-3">
-                                        <h2 className="lg:card-title text-white uppercase">{item.name}</h2>
+                                    <div className="lg:card-body p-3 aspect-square overflow-hidden">
+                                        <button onClick={() => handleNavigation(item.id ? item.id : '')} >
+                                            <h2 className="lg:card-title text-white uppercase">{item.name}</h2>
+                                        </button>
                                         <h2 className="text-warning font-normal text-xs">{moment(item.createdAt).format(`DD MMMM YYYY`)}</h2>
-                                        <p className='text-slate-300 font-thin p-2 lg:text-sm text-xs'>{truncate}</p>
+                                        {/* <p className='text-slate-300 font-thin p-2 lg:text-sm text-xs'>{truncate}</p> */}
                                         <div className="card-actions justify-end">
                                             <button onClick={() => handleNavigation(item.id ? item.id : '')} className="btn btn-ghost text-white">Detail</button>
                                         </div>
